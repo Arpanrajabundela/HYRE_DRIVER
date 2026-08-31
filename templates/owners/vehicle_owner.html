@@ -1,0 +1,757 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Vehicle Owners
+{% endblock %}
+
+{% block content %}
+
+<!-- Premium Hero -->
+
+<section class="owner-hero">
+
+    <div class="container">
+
+        <div class="row align-items-center gy-5">
+
+            <div class="col-lg-6">
+
+                <span class="owner-hero-badge">
+                    <i class="bi bi-patch-check-fill"></i>
+                    Trusted by 100+ Vehicle Owners
+                </span>
+
+                <h1 class="owner-hero-title mt-4">
+                    Hire Verified Drivers
+                    <span>Faster & Smarter</span>
+                </h1>
+
+                <p class="owner-hero-description mt-4">
+
+                    Whether you own one truck or manage an entire fleet,
+                    Hire Driver helps you connect with experienced,
+                    verified, and professional drivers across India.
+
+                </p>
+
+                <div class="mt-5 d-flex flex-wrap gap-3">
+
+                    <a href="{% url 'driver_list' %}"
+                       class="btn btn-warning btn-lg">
+
+                        <i class="bi bi-search"></i>
+
+                        Find Drivers
+
+                    </a>
+
+                    {% if user.is_authenticated and user.role == "owner" %}
+
+    <a href="{% url 'post_requirement' %}"
+       class="btn btn-primary">
+        Post Requirement
+    </a>
+
+{% endif %}
+                </div>
+
+                <div class="owner-hero-stats">
+
+                    <div>
+
+                        <h3>500+</h3>
+
+                        <small>Verified Drivers</small>
+
+                    </div>
+
+                    <div>
+
+                        <h3>100+</h3>
+
+                        <small>Businesses</small>
+
+                    </div>
+
+                    <div>
+
+                        <h3>4.9 ★</h3>
+
+                        <small>Average Rating</small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-6">
+
+                <div class="owner-image-card">
+
+                    <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=900"
+                         class="img-fluid">
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- Why Choose -->
+
+<section class="owner-features py-5">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <span class="section-subtitle">
+                WHY CHOOSE US
+            </span>
+
+            <h2 class="section-title mt-3">
+                Everything You Need To Hire
+                Professional Drivers
+            </h2>
+
+            <p class="section-text">
+                We make hiring safe, quick, and hassle-free for vehicle owners.
+            </p>
+
+        </div>
+
+        <div class="row g-4">
+
+            <div class="col-md-6 col-lg-3">
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">
+                        <i class="bi bi-patch-check-fill"></i>
+                    </div>
+
+                    <h4>Verified Drivers</h4>
+
+                    <p>
+                        Every driver's profile is manually verified before appearing on the platform.
+                    </p>
+
+                    <a href="#">
+                        Learn More →
+                    </a>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">
+                        <i class="bi bi-lightning-charge-fill"></i>
+                    </div>
+
+                    <h4>Fast Hiring</h4>
+
+                    <p>
+                        Connect with qualified drivers quickly whenever you need them.
+                    </p>
+
+                    <a href="#">
+                        Learn More →
+                    </a>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">
+                        <i class="bi bi-star-fill"></i>
+                    </div>
+
+                    <h4>Top Rated</h4>
+
+                    <p>
+                        Review ratings and feedback before making your hiring decision.
+                    </p>
+
+                    <a href="#">
+                        Learn More →
+                    </a>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">
+                        <i class="bi bi-headset"></i>
+                    </div>
+
+                    <h4>24/7 Support</h4>
+
+                    <p>
+                        Our team is always available to assist you throughout the hiring process.
+                    </p>
+
+                    <a href="#">
+                        Learn More →
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- How It Works -->
+
+<section class="owner-process py-5">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <span class="section-subtitle">
+                SIMPLE PROCESS
+            </span>
+
+            <h2 class="section-title mt-3">
+                Hire Drivers in 4 Easy Steps
+            </h2>
+
+            <p class="section-text">
+                Our streamlined process helps you find the right driver quickly and confidently.
+            </p>
+
+        </div>
+
+        <div class="row g-4">
+
+            <div class="col-md-6 col-lg-3">
+
+                <div class="process-card">
+
+                    <div class="process-number">01</div>
+
+                    <div class="process-icon">
+                        <i class="bi bi-person-plus-fill"></i>
+                    </div>
+
+                    <h4>Create Account</h4>
+
+                    <p>
+                        Register your business and complete your profile in just a few minutes.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+
+                <div class="process-card">
+
+                    <div class="process-number">02</div>
+
+                    <div class="process-icon">
+                        <i class="bi bi-search"></i>
+                    </div>
+
+                    <h4>Browse Drivers</h4>
+
+                    <p>
+                        Search verified drivers using filters like experience, vehicle type, and location.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+
+                <div class="process-card">
+
+                    <div class="process-number">03</div>
+
+                    <div class="process-icon">
+                        <i class="bi bi-chat-dots-fill"></i>
+                    </div>
+
+                    <h4>Connect</h4>
+
+                    <p>
+                        Contact shortlisted drivers directly and discuss your requirements.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+
+                <div class="process-card">
+
+                    <div class="process-number">04</div>
+
+                    <div class="process-icon">
+                        <i class="bi bi-check-circle-fill"></i>
+                    </div>
+
+                    <h4>Hire & Start</h4>
+
+                    <p>
+                        Finalize your hiring and get your vehicle on the road with confidence.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- Vehicle Categories -->
+
+<section class="vehicle-category-section py-5">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <span class="section-subtitle">
+                VEHICLE TYPES
+            </span>
+
+            <h2 class="section-title mt-3">
+                Hire Drivers For Every Vehicle
+            </h2>
+
+            <p class="section-text">
+                Whether you own one vehicle or an entire fleet, we've got professional drivers ready for every category.
+            </p>
+
+        </div>
+
+        <div class="row g-4">
+
+            <div class="col-lg-4 col-md-6">
+
+                <div class="vehicle-card">
+
+                    <img src="https://images.unsplash.com/photo-1519003722824-194d4455a60c?w=800"
+                        class="vehicle-image">
+
+                    <div class="vehicle-content">
+
+                        <h4>Truck Drivers</h4>
+
+                        <p>
+                            Long route, heavy vehicle and logistics experts.
+                        </p>
+
+                        <div class="vehicle-footer">
+
+                            <span>250+ Drivers</span>
+
+                            <a href="{% url 'driver_list' %}" class="btn btn-primary btn-sm">
+                                View
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+
+                <div class="vehicle-card">
+
+                    <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=800"
+                        class="vehicle-image">
+
+                    <div class="vehicle-content">
+
+                        <h4>Bus Drivers</h4>
+
+                        <p>
+                            Experienced commercial and passenger transport drivers.
+                        </p>
+
+                        <div class="vehicle-footer">
+
+                            <span>90+ Drivers</span>
+
+                            <a href="{% url 'driver_list' %}" class="btn btn-primary btn-sm">
+                                View
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+
+                <div class="vehicle-card">
+
+                    <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800"
+                        class="vehicle-image">
+
+                    <div class="vehicle-content">
+
+                        <h4>Taxi Drivers</h4>
+
+                        <p>
+                            Professional city and outstation drivers available.
+                        </p>
+
+                        <div class="vehicle-footer">
+
+                            <span>180+ Drivers</span>
+
+                            <a href="{% url 'driver_list' %}" class="btn btn-primary btn-sm">
+                                View
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- Statistics -->
+
+<section class="stats-section py-5">
+
+    <div class="container">
+
+        <div class="row text-center">
+
+            <div class="col-md-3">
+                <h2 class="fw-bold text-primary">500+</h2>
+                <p>Verified Drivers</p>
+            </div>
+
+            <div class="col-md-3">
+                <h2 class="fw-bold text-primary">100+</h2>
+                <p>Vehicle Owners</p>
+            </div>
+
+            <div class="col-md-3">
+                <h2 class="fw-bold text-primary">1000+</h2>
+                <p>Successful Hirings</p>
+            </div>
+
+            <div class="col-md-3">
+                <h2 class="fw-bold text-primary">24/7</h2>
+                <p>Customer Support</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- Testimonials -->
+
+<section class="owner-testimonials py-5">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <span class="section-subtitle">
+                TESTIMONIALS
+            </span>
+
+            <h2 class="section-title mt-3">
+                What Vehicle Owners Say
+            </h2>
+
+            <p class="section-text">
+                Trusted by transport companies, fleet owners, and logistics businesses.
+            </p>
+
+        </div>
+
+        <div class="row g-4">
+
+            <div class="col-lg-4">
+
+                <div class="testimonial-card">
+
+                    <div class="stars">
+                        ★★★★★
+                    </div>
+
+                    <p class="testimonial-text">
+                        "Hire Driver helped us find experienced truck drivers within two days. The verification process gave us complete confidence."
+                    </p>
+
+                    <div class="testimonial-user">
+
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="">
+
+                        <div>
+
+                            <h5>Rajesh Sharma</h5>
+
+                            <small>Fleet Owner • Indore</small>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-4">
+
+                <div class="testimonial-card">
+
+                    <div class="stars">
+                        ★★★★★
+                    </div>
+
+                    <p class="testimonial-text">
+                        "The platform is easy to use and helped us quickly hire qualified bus drivers for our company."
+                    </p>
+
+                    <div class="testimonial-user">
+
+                        <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="">
+
+                        <div>
+
+                            <h5>Priya Verma</h5>
+
+                            <small>Transport Manager • Bhopal</small>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-4">
+
+                <div class="testimonial-card">
+
+                    <div class="stars">
+                        ★★★★★
+                    </div>
+
+                    <p class="testimonial-text">
+                        "Professional support and verified drivers made the hiring process much easier than traditional methods."
+                    </p>
+
+                    <div class="testimonial-user">
+
+                        <img src="https://randomuser.me/api/portraits/men/68.jpg" alt="">
+
+                        <div>
+
+                            <h5>Amit Patel</h5>
+
+                            <small>Logistics Business • Ahmedabad</small>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- FAQ -->
+
+<section class="owner-faq py-5">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <span class="section-subtitle">
+                FAQ
+            </span>
+
+            <h2 class="section-title mt-3">
+                Frequently Asked Questions
+            </h2>
+
+            <p class="section-text">
+                Everything you need to know before hiring your next driver.
+            </p>
+
+        </div>
+
+        <div class="accordion shadow rounded-4 overflow-hidden" id="faqAccordion">
+
+            <div class="accordion-item">
+
+                <h2 class="accordion-header">
+
+                    <button class="accordion-button"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#faq1">
+
+                        Are all drivers verified?
+
+                    </button>
+
+                </h2>
+
+                <div id="faq1"
+                     class="accordion-collapse collapse show"
+                     data-bs-parent="#faqAccordion">
+
+                    <div class="accordion-body">
+
+                        Yes. Every driver profile goes through document verification before becoming visible on the platform.
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="accordion-item">
+
+                <h2 class="accordion-header">
+
+                    <button class="accordion-button collapsed"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#faq2">
+
+                        Can I hire a driver temporarily?
+
+                    </button>
+
+                </h2>
+
+                <div id="faq2"
+                     class="accordion-collapse collapse"
+                     data-bs-parent="#faqAccordion">
+
+                    <div class="accordion-body">
+
+                        Yes. You can hire drivers for temporary, contract, or permanent roles depending on your needs.
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="accordion-item">
+
+                <h2 class="accordion-header">
+
+                    <button class="accordion-button collapsed"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#faq3">
+
+                        What types of vehicles are supported?
+
+                    </button>
+
+                </h2>
+
+                <div id="faq3"
+                     class="accordion-collapse collapse"
+                     data-bs-parent="#faqAccordion">
+
+                    <div class="accordion-body">
+
+                        We support truck, bus, taxi, trailer, tempo, dumper, and many other commercial vehicle categories.
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="accordion-item">
+
+                <h2 class="accordion-header">
+
+                    <button class="accordion-button collapsed"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#faq4">
+
+                        How quickly can I hire a driver?
+
+                    </button>
+
+                </h2>
+
+                <div id="faq4"
+                     class="accordion-collapse collapse"
+                     data-bs-parent="#faqAccordion">
+
+                    <div class="accordion-body">
+
+                        Many vehicle owners connect with suitable drivers within the same day, depending on location and requirements.
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+{% include "components/cta_section.html" %}
+
+{% endblock %}

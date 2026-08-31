@@ -1,0 +1,153 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Register
+{% endblock %}
+
+{% block content %}
+
+<section class="register-section">
+
+    <div class="container">
+
+        <div class="row justify-content-center align-items-center">
+
+            <div class="col-lg-10">
+
+                <div class="register-card">
+
+                    <div class="row g-0">
+
+                        <!-- Left Side -->
+
+                        <div class="col-lg-5 register-left">
+
+                            <span class="page-badge">
+                                Join Hire Driver
+                            </span>
+
+                            <h2 class="mt-4">
+                                Start Your Journey Today
+                            </h2>
+
+                            <p class="mt-3">
+                                Whether you're a professional driver looking for opportunities
+                                or a vehicle owner searching for trusted drivers,
+                                create your account to get started.
+                            </p>
+
+                        </div>
+
+                        <!-- Right Side -->
+
+                        <div class="col-lg-7">
+
+                            <div class="register-form">
+
+                                <h2>Create Account</h2>
+
+                                <p class="text-muted mb-4">
+                                    Fill in your details below.
+                                </p>
+
+                                <form method="POST">
+
+                                    {% csrf_token %}
+
+                                    <div class="mb-3">
+
+    <label class="form-label">Full Name</label>
+
+    {{ form.full_name }}
+
+    {{ form.full_name.errors }}
+
+</div>
+
+<div class="mb-3">
+
+    <label class="form-label">Email Address</label>
+
+    {{ form.email }}
+
+    {{ form.email.errors }}
+
+</div>
+
+<div class="mb-3">
+
+    <label class="form-label">Phone Number</label>
+
+    {{ form.phone_number }}
+
+    {{ form.phone_number.errors }}
+
+</div>
+
+<div class="mb-3">
+
+    <label class="form-label">Register As</label>
+
+    {{ form.role }}
+
+    {{ form.role.errors }}
+
+</div>
+
+<div class="mb-3">
+
+    <label class="form-label">Password</label>
+
+    {{ form.password1 }}
+
+    {{ form.password1.errors }}
+
+</div>
+
+<div class="mb-3">
+
+    <label class="form-label">Confirm Password</label>
+
+    {{ form.password2 }}
+
+    {{ form.password2.errors }}
+
+</div>
+
+                                    <button type="submit"
+                                            class="btn btn-primary w-100 btn-lg">
+
+                                        Create Account
+
+                                    </button>
+
+                                </form>
+
+                                <div class="text-center mt-4">
+
+                                    Already have an account?
+
+                                    <a href="#">
+                                        Login
+                                    </a>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

@@ -1,0 +1,477 @@
+{% extends "base.html" %}
+
+{% block title %}
+Applications - {{ requirement.title }}
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <!-- ===================================================== -->
+    <!-- PAGE HEADER -->
+    <!-- ===================================================== -->
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <div>
+            <span class="badge bg-primary rounded-pill px-3 py-2">
+                DRIVER APPLICATIONS
+            </span>
+
+            <h1 class="fw-bold mt-3 mb-1">
+                {{ requirement.title }}
+            </h1>
+
+            <p class="text-muted mb-0">
+                Review drivers who applied for this requirement.
+            </p>
+        </div>
+
+        <a
+            href="{% url 'owner_dashboard' %}"
+            class="btn btn-outline-secondary rounded-pill px-4"
+        >
+            ← Dashboard
+        </a>
+
+    </div>
+
+
+    <!-- ===================================================== -->
+    <!-- REQUIREMENT SUMMARY -->
+    <!-- ===================================================== -->
+
+    <div class="card border-0 shadow-sm rounded-4 mb-5">
+
+        <div class="card-body p-4">
+
+            <div class="row g-4">
+
+                <!-- Vehicle -->
+
+                <div class="col-md-3">
+
+                    <small class="text-muted">
+                        Vehicle
+                    </small>
+
+                    <div class="fw-bold mt-1">
+                        🚛
+                        {{ requirement.get_vehicle_type_display }}
+                    </div>
+
+                </div>
+
+
+                <!-- Location -->
+
+                <div class="col-md-3">
+
+                    <small class="text-muted">
+                        Location
+                    </small>
+
+                    <div class="fw-bold mt-1">
+                        📍
+                        {{ requirement.city }},
+                        {{ requirement.state }}
+                    </div>
+
+                </div>
+
+
+                <!-- Experience -->
+
+                <div class="col-md-3">
+
+                    <small class="text-muted">
+                        Experience Required
+                    </small>
+
+                    <div class="fw-bold mt-1">
+                        💼
+                        {{ requirement.experience_required }} years
+                    </div>
+
+                </div>
+
+
+                <!-- Applications -->
+
+                <div class="col-md-3">
+
+                    <small class="text-muted">
+                        Applications
+                    </small>
+
+                    <div class="fw-bold mt-1">
+                        👥
+                        {{ applications.count }}
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ===================================================== -->
+    <!-- APPLICATIONS -->
+    <!-- ===================================================== -->
+
+    {% if applications %}
+
+        <div class="row g-4">
+
+            {% for application in applications %}
+
+                <div class="col-lg-6">
+
+                    <div class="card border-0 shadow-sm rounded-4 h-100">
+
+                        <div class="card-body p-4">
+
+                            <!-- DRIVER HEADER -->
+
+                            <div class="d-flex align-items-center mb-4">
+
+                                {% if application.driver.profile_picture %}
+
+                                    <img
+                                        src="{{ application.driver.profile_picture.url }}"
+                                        alt="Driver Profile"
+                                        class="rounded-circle me-3"
+                                        style="
+                                            width:75px;
+                                            height:75px;
+                                            object-fit:cover;
+                                        "
+                                    >
+
+                                {% else %}
+
+                                    <div
+                                        class="rounded-circle bg-light d-flex
+                                               align-items-center justify-content-center
+                                               me-3"
+                                        style="
+                                            width:75px;
+                                            height:75px;
+                                            font-size:35px;
+                                        "
+                                    >
+                                        👨‍✈️
+                                    </div>
+
+                                {% endif %}
+
+
+                                <div>
+
+                                    <h4 class="fw-bold mb-1">
+
+                                        {{ application.driver.user.full_name }}
+
+                                    </h4>
+
+                                    <p class="text-muted mb-0">
+
+                                        {{ application.driver.user.email }}
+
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- DRIVER INFORMATION -->
+
+                            <div class="row g-3">
+
+
+                                <!-- Experience -->
+
+                                <div class="col-6">
+
+                                    <div class="bg-light rounded-3 p-3">
+
+                                        <small class="text-muted">
+                                            Experience
+                                        </small>
+
+                                        <div class="fw-semibold mt-1">
+
+                                            {% if application.driver.experience %}
+
+                                                {{ application.driver.experience }}
+                                                years
+
+                                            {% else %}
+
+                                                Not Added
+
+                                            {% endif %}
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+                                <!-- License -->
+
+                                <div class="col-6">
+
+                                    <div class="bg-light rounded-3 p-3">
+
+                                        <small class="text-muted">
+                                            License
+                                        </small>
+
+                                        <div class="fw-semibold mt-1">
+
+                                            {% if application.driver.license_type %}
+
+                                                {{ application.driver.license_type }}
+
+                                            {% else %}
+
+                                                Not Added
+
+                                            {% endif %}
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+                                <!-- Vehicle -->
+
+                                <div class="col-6">
+
+                                    <div class="bg-light rounded-3 p-3">
+
+                                        <small class="text-muted">
+                                            Preferred Vehicle
+                                        </small>
+
+                                        <div class="fw-semibold mt-1">
+
+                                            {% if application.driver.preferred_vehicle %}
+
+                                                {{ application.driver.preferred_vehicle }}
+
+                                            {% else %}
+
+                                                Not Added
+
+                                            {% endif %}
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+                                <!-- Location -->
+
+                                <div class="col-6">
+
+                                    <div class="bg-light rounded-3 p-3">
+
+                                        <small class="text-muted">
+                                            Location
+                                        </small>
+
+                                        <div class="fw-semibold mt-1">
+
+                                            {% if application.driver.city %}
+
+                                                {{ application.driver.city }}
+
+                                                {% if application.driver.state %}
+                                                    , {{ application.driver.state }}
+                                                {% endif %}
+
+                                            {% elif application.driver.state %}
+
+                                                {{ application.driver.state }}
+
+                                            {% else %}
+
+                                                Not Added
+
+                                            {% endif %}
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <hr class="my-4">
+
+
+                            <!-- APPLICATION DETAILS -->
+
+                            <div class="d-flex justify-content-between
+                                        align-items-center mb-3">
+
+                                <div>
+
+                                    <small class="text-muted">
+                                        Applied On
+                                    </small>
+
+                                    <div class="fw-semibold">
+                                        {{ application.created_at|date:"d M Y" }}
+                                    </div>
+
+                                </div>
+
+
+                                <div>
+
+                                    {% if application.status == "PENDING" %}
+
+                                        <span class="badge bg-warning text-dark
+                                                     rounded-pill px-3 py-2">
+                                            Pending
+                                        </span>
+
+                                    {% elif application.status == "ACCEPTED" %}
+
+                                        <span class="badge bg-success
+                                                     rounded-pill px-3 py-2">
+                                            Accepted
+                                        </span>
+
+                                    {% elif application.status == "REJECTED" %}
+
+                                        <span class="badge bg-danger
+                                                     rounded-pill px-3 py-2">
+                                            Rejected
+                                        </span>
+
+                                    {% endif %}
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- OWNER RESPONSE -->
+
+                            {% if application.owner_response %}
+
+                                <div class="bg-light rounded-3 p-3 mb-4">
+
+                                    <small class="text-muted">
+                                        Your Response
+                                    </small>
+
+                                    <p class="mb-0 mt-1">
+                                        {{ application.owner_response }}
+                                    </p>
+
+                                </div>
+
+                            {% endif %}
+
+
+                            <!-- ACTIONS -->
+
+                            <div class="d-flex gap-2">
+
+                                <a
+                                    href="{% url 'driver_profile' application.driver.id %}"
+                                    class="btn btn-outline-primary
+                                           rounded-pill px-4"
+                                >
+                                    👤 View Profile
+                                </a>
+
+
+                                {% if application.status == "PENDING" %}
+
+                                    <a
+                                        href="{% url 'accept_application' application.id %}"
+                                        class="btn btn-success
+                                               rounded-pill px-4"
+                                    >
+                                        ✓ Accept
+                                    </a>
+
+
+                                    <a
+                                        href="{% url 'reject_application' application.id %}"
+                                        class="btn btn-outline-danger
+                                               rounded-pill px-4"
+                                    >
+                                        ✕ Reject
+                                    </a>
+
+                                {% endif %}
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    {% else %}
+
+        <!-- ================================================= -->
+        <!-- NO APPLICATIONS -->
+        <!-- ================================================= -->
+
+        <div class="card border-0 shadow-sm rounded-4">
+
+            <div class="card-body text-center py-5">
+
+                <div style="font-size:65px;">
+                    📋
+                </div>
+
+                <h3 class="fw-bold mt-3">
+                    No Applications Yet
+                </h3>
+
+                <p class="text-muted">
+                    No drivers have applied for this requirement yet.
+                </p>
+
+                <a
+                    href="{% url 'owner_dashboard' %}"
+                    class="btn btn-primary rounded-pill px-4 mt-2"
+                >
+                    ← Back to Dashboard
+                </a>
+
+            </div>
+
+        </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

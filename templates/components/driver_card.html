@@ -1,0 +1,202 @@
+<div class="col-lg-4 col-md-6">
+
+    <div class="driver-card">
+
+        <!-- Profile Image -->
+        <div class="text-center">
+
+            {% if driver.profile_picture %}
+
+                <img src="{{ driver.profile_picture.url }}"
+                     class="driver-img"
+                     alt="{{ driver.user.full_name }}">
+
+            {% else %}
+
+                <div class="driver-img d-inline-flex
+                            align-items-center justify-content-center
+                            bg-light"
+                     style="font-size:55px;">
+
+                    👨‍🔧
+
+                </div>
+
+            {% endif %}
+
+
+            <!-- Verification -->
+
+            {% if driver.is_verified %}
+
+                <span class="verified-badge">
+
+                    ✔ Verified
+
+                </span>
+
+            {% endif %}
+
+        </div>
+
+
+        <!-- Driver Name -->
+
+        <h4 class="mt-3">
+
+            {{ driver.user.full_name }}
+
+        </h4>
+
+
+        <!-- Vehicle / Driver Type -->
+
+        <div class="rating">
+
+            {% if driver.is_verified %}
+
+                ⭐⭐⭐⭐⭐
+
+                <span>Verified</span>
+
+            {% endif %}
+
+        </div>
+
+
+        <p class="driver-role">
+
+            🚚
+
+            {% if driver.preferred_vehicle %}
+
+                {{ driver.get_preferred_vehicle_display }}
+                Driver
+
+            {% else %}
+
+                Professional Driver
+
+            {% endif %}
+
+        </p>
+
+
+        <hr>
+
+
+        <!-- Driver Information -->
+
+        <div class="driver-info">
+
+
+            <!-- Location -->
+
+            <p>
+
+                <i class="bi bi-geo-alt-fill"></i>
+
+                {% if driver.city %}
+                    {{ driver.city }}
+                {% endif %}
+
+                {% if driver.state %}
+                    , {{ driver.state }}
+                {% endif %}
+
+            </p>
+
+
+            <!-- Experience -->
+
+            <p>
+
+                <i class="bi bi-briefcase-fill"></i>
+
+                {{ driver.experience }}
+
+                {% if driver.experience == 1 %}
+                    Year
+                {% else %}
+                    Years
+                {% endif %}
+
+                Experience
+
+            </p>
+
+
+            <!-- Expected Salary -->
+
+            {% if driver.expected_salary %}
+
+                <p>
+
+                    <i class="bi bi-currency-rupee"></i>
+
+                    ₹{{ driver.expected_salary|floatformat:0 }}
+
+                    / month
+
+                </p>
+
+            {% endif %}
+
+
+            <!-- Licence -->
+
+            {% if driver.license_type %}
+
+                <p>
+
+                    <i class="bi bi-card-text"></i>
+
+                    {{ driver.get_license_type_display }}
+                    Licence
+
+                </p>
+
+            {% endif %}
+
+
+        </div>
+
+
+        <!-- Availability -->
+
+        {% if driver.available %}
+
+            <span class="availability available">
+
+                ● Available Now
+
+            </span>
+
+        {% else %}
+
+            <span class="availability">
+
+                ● Currently Unavailable
+
+            </span>
+
+        {% endif %}
+
+
+        <!-- View Profile -->
+
+        <div class="d-grid mt-4">
+
+            <a href="{% url 'driver_profile' driver.id %}"
+               class="btn btn-primary">
+
+                View Profile →
+
+            </a>
+
+        </div>
+
+
+    </div>
+
+</div>

@@ -1,0 +1,443 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ driver.user.full_name }} - Driver Profile
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <!-- Back Button -->
+
+    <div class="mb-4">
+
+        <a href="{% url 'driver_list' %}"
+           class="btn btn-outline-secondary rounded-pill px-4">
+
+            ← Back to Drivers
+
+        </a>
+
+    </div>
+
+
+    <!-- Main Profile Card -->
+
+    <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
+
+        <!-- Header -->
+
+        <div
+            class="p-5 text-white"
+            style="
+                background:
+                linear-gradient(
+                    135deg,
+                    #0f172a,
+                    #2563eb
+                );
+            "
+        >
+
+            <div class="row align-items-center">
+
+                <!-- Profile Picture -->
+
+                <div class="col-md-4 text-center">
+
+                    {% if driver.profile_picture %}
+
+                        <img
+                            src="{{ driver.profile_picture.url }}"
+                            alt="{{ driver.user.full_name }}"
+                            class="rounded-circle shadow"
+                            style="
+                                width:170px;
+                                height:170px;
+                                object-fit:cover;
+                                border:5px solid white;
+                            "
+                        >
+
+                    {% else %}
+
+                        <div
+                            class="rounded-circle bg-white
+                                   text-primary d-inline-flex
+                                   align-items-center
+                                   justify-content-center
+                                   shadow"
+                            style="
+                                width:170px;
+                                height:170px;
+                                font-size:80px;
+                            "
+                        >
+
+                            👨‍🔧
+
+                        </div>
+
+                    {% endif %}
+
+                </div>
+
+
+                <!-- Basic Information -->
+
+                <div class="col-md-8 mt-4 mt-md-0">
+
+                    <h1 class="fw-bold">
+
+                        {{ driver.user.full_name }}
+
+                    </h1>
+
+
+                    {% if driver.is_verified %}
+
+                        <span class="badge bg-success rounded-pill px-3 py-2">
+
+                            ✓ Verified Driver
+
+                        </span>
+
+                    {% else %}
+
+                        <span class="badge bg-light text-dark rounded-pill px-3 py-2">
+
+                            Driver
+
+                        </span>
+
+                    {% endif %}
+
+
+                    <p class="fs-5 mt-3 mb-1">
+
+                        🚛
+
+                        {% if driver.preferred_vehicle %}
+
+                            {{ driver.get_preferred_vehicle_display }}
+                            Driver
+
+                        {% else %}
+
+                            Professional Driver
+
+                        {% endif %}
+
+                    </p>
+
+
+                    <p class="mb-0">
+
+                        📍
+
+                        {{ driver.city }}
+
+                        {% if driver.state %}
+                            , {{ driver.state }}
+                        {% endif %}
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Profile Information -->
+
+        <div class="card-body p-4 p-md-5">
+
+            <div class="row g-4">
+
+
+                <!-- Experience -->
+
+                <div class="col-md-4">
+
+                    <div class="p-4 bg-light rounded-4 h-100">
+
+                        <div class="fs-2">
+                            🛣️
+                        </div>
+
+                        <small class="text-muted">
+                            Experience
+                        </small>
+
+                        <h4 class="fw-bold mt-2">
+
+                            {{ driver.experience }}
+
+                            {% if driver.experience == 1 %}
+                                Year
+                            {% else %}
+                                Years
+                            {% endif %}
+
+                        </h4>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Vehicle -->
+
+                <div class="col-md-4">
+
+                    <div class="p-4 bg-light rounded-4 h-100">
+
+                        <div class="fs-2">
+                            🚚
+                        </div>
+
+                        <small class="text-muted">
+                            Preferred Vehicle
+                        </small>
+
+                        <h4 class="fw-bold mt-2">
+
+                            {% if driver.preferred_vehicle %}
+
+                                {{ driver.get_preferred_vehicle_display }}
+
+                            {% else %}
+
+                                Not specified
+
+                            {% endif %}
+
+                        </h4>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Salary -->
+
+                <div class="col-md-4">
+
+                    <div class="p-4 bg-light rounded-4 h-100">
+
+                        <div class="fs-2">
+                            💰
+                        </div>
+
+                        <small class="text-muted">
+                            Expected Salary
+                        </small>
+
+                        <h4 class="fw-bold mt-2">
+
+                            {% if driver.expected_salary %}
+
+                                ₹{{ driver.expected_salary|floatformat:0 }}
+
+                                <small class="text-muted">
+                                    / month
+                                </small>
+
+                            {% else %}
+
+                                Not specified
+
+                            {% endif %}
+
+                        </h4>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+            <hr class="my-5">
+
+
+            <!-- Professional Details -->
+
+            <h3 class="fw-bold mb-4">
+
+                Professional Details
+
+            </h3>
+
+
+            <div class="row g-4">
+
+
+                <div class="col-md-6">
+
+                    <p>
+
+                        <strong>
+                            📋 Licence Type:
+                        </strong>
+
+                        {% if driver.license_type %}
+
+                            {{ driver.get_license_type_display }}
+
+                        {% else %}
+
+                            Not specified
+
+                        {% endif %}
+
+                    </p>
+
+                </div>
+
+
+                <div class="col-md-6">
+
+                    <p>
+
+                        <strong>
+                            📍 Location:
+                        </strong>
+
+                        {{ driver.city }}
+
+                        {% if driver.state %}
+                            , {{ driver.state }}
+                        {% endif %}
+
+                    </p>
+
+                </div>
+
+
+                <div class="col-md-6">
+
+                    <p>
+
+                        <strong>
+                            🟢 Availability:
+                        </strong>
+
+                        {% if driver.available %}
+
+                            <span class="badge bg-success">
+
+                                Available Now
+
+                            </span>
+
+                        {% else %}
+
+                            <span class="badge bg-secondary">
+
+                                Currently Unavailable
+
+                            </span>
+
+                        {% endif %}
+
+                    </p>
+
+                </div>
+
+
+                <div class="col-md-6">
+
+                    <p>
+
+                        <strong>
+                            🛡️ Verification:
+                        </strong>
+
+                        {% if driver.is_verified %}
+
+                            <span class="badge bg-success">
+
+                                Verified
+
+                            </span>
+
+                        {% else %}
+
+                            <span class="badge bg-warning text-dark">
+
+                                Not Verified
+
+                            </span>
+
+                        {% endif %}
+
+                    </p>
+
+                </div>
+
+
+            </div>
+
+
+            <!-- About -->
+
+            {% if driver.bio %}
+
+                <hr class="my-5">
+
+                <h3 class="fw-bold mb-3">
+
+                    About the Driver
+
+                </h3>
+
+                <p class="text-muted fs-5">
+
+                    {{ driver.bio }}
+
+                </p>
+
+            {% endif %}
+
+
+            <!-- Contact -->
+
+            <div class="mt-5 text-center">
+
+                {% if driver.available %}
+
+                    <button
+                        class="btn btn-primary btn-lg rounded-pill px-5"
+                    >
+
+                        📞 Contact Driver
+
+                    </button>
+
+                {% else %}
+
+                    <button
+                        class="btn btn-secondary btn-lg rounded-pill px-5"
+                        disabled
+                    >
+
+                        Driver Currently Unavailable
+
+                    </button>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,486 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <!-- HERO -->
+
+    <div class="p-5 rounded-4 shadow-lg mb-5 text-white"
+         style="background:linear-gradient(135deg,#0f172a,#2563eb);">
+
+        <div class="row align-items-center">
+
+            <div class="col-md-8">
+
+                <span class="badge bg-light text-primary px-3 py-2 mb-3">
+                    Driver Profile
+                </span>
+
+                <h1 class="fw-bold display-6">
+                    Complete Your Driver Profile 🚛
+                </h1>
+
+                <p class="fs-5 mt-3 opacity-75 mb-0">
+                    Add your professional information so vehicle owners
+                    can find and contact you.
+                </p>
+
+            </div>
+
+            <div class="col-md-4 text-center">
+
+                <div style="font-size:90px;">
+                    👨‍🔧
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- FORM -->
+
+    <form method="POST"
+          enctype="multipart/form-data">
+
+        {% csrf_token %}
+
+
+        <!-- PERSONAL INFORMATION -->
+
+        <div class="card border-0 shadow-lg rounded-4 mb-4">
+
+            <div class="card-header text-white py-4 rounded-top-4"
+                 style="background:#111827;">
+
+                <h3 class="mb-1 fw-bold">
+                    👤 Personal Information
+                </h3>
+
+                <small class="text-light">
+                    Tell us a little about yourself.
+                </small>
+
+            </div>
+
+
+            <div class="card-body p-4">
+
+                <div class="row g-4">
+
+                    <!-- Profile Picture -->
+
+                    <div class="col-md-6">
+
+                        <label class="form-label fw-semibold">
+                            {{ form.profile_picture.label }}
+                        </label>
+
+                        {{ form.profile_picture }}
+
+                        {% if form.profile_picture.errors %}
+                            <div class="text-danger small">
+                                {{ form.profile_picture.errors }}
+                            </div>
+                        {% endif %}
+
+                    </div>
+
+
+                    <!-- Date of Birth -->
+
+                    <div class="col-md-3">
+
+                        <label class="form-label fw-semibold">
+                            {{ form.date_of_birth.label }}
+                        </label>
+
+                        {{ form.date_of_birth }}
+
+                    </div>
+
+
+                    <!-- Gender -->
+
+                    <div class="col-md-3">
+
+                        <label class="form-label fw-semibold">
+                            {{ form.gender.label }}
+                        </label>
+
+                        {{ form.gender }}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- DRIVING INFORMATION -->
+
+        <div class="card border-0 shadow-lg rounded-4 mb-4">
+
+            <div class="card-header text-white py-4"
+                 style="background:#111827;">
+
+                <h3 class="mb-1 fw-bold">
+                    🚘 Driving Information
+                </h3>
+
+                <small class="text-light">
+                    Add your licence and driving experience.
+                </small>
+
+            </div>
+
+
+            <div class="card-body p-4">
+
+                <div class="row g-4">
+
+                    <div class="col-md-6">
+
+                        <label class="form-label fw-semibold">
+                            {{ form.license_number.label }}
+                        </label>
+
+                        {{ form.license_number }}
+
+                        {% if form.license_number.errors %}
+                            <div class="text-danger small">
+                                {{ form.license_number.errors }}
+                            </div>
+                        {% endif %}
+
+                    </div>
+
+
+                    <div class="col-md-6">
+
+                        <label class="form-label fw-semibold">
+                            {{ form.license_type.label }}
+                        </label>
+
+                        {{ form.license_type }}
+
+                        {% if form.license_type.errors %}
+                            <div class="text-danger small">
+                                {{ form.license_type.errors }}
+                            </div>
+                        {% endif %}
+
+                    </div>
+
+
+                    <div class="col-md-6">
+
+                        <label class="form-label fw-semibold">
+                            {{ form.experience.label }}
+                        </label>
+
+                        {{ form.experience }}
+
+                    </div>
+
+
+                    <div class="col-md-6">
+
+                        <label class="form-label fw-semibold">
+                            {{ form.preferred_vehicle.label }}
+                        </label>
+
+                        {{ form.preferred_vehicle }}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- LOCATION -->
+
+        <div class="card border-0 shadow-lg rounded-4 mb-4">
+
+            <div class="card-header text-white py-4"
+                 style="background:#111827;">
+
+                <h3 class="mb-1 fw-bold">
+                    📍 Location Information
+                </h3>
+
+                <small class="text-light">
+                    Help vehicle owners find drivers near them.
+                </small>
+
+            </div>
+
+
+            <div class="card-body p-4">
+
+                <div class="row g-4">
+
+                    <div class="col-md-6">
+
+                        <label class="form-label fw-semibold">
+                            {{ form.city.label }}
+                        </label>
+
+                        {{ form.city }}
+
+                    </div>
+
+
+                    <div class="col-md-6">
+
+                        <label class="form-label fw-semibold">
+                            {{ form.state.label }}
+                        </label>
+
+                        {{ form.state }}
+
+                    </div>
+
+
+                    <div class="col-12">
+
+                        <label class="form-label fw-semibold">
+                            {{ form.address.label }}
+                        </label>
+
+                        {{ form.address }}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- PROFESSIONAL INFORMATION -->
+
+        <div class="card border-0 shadow-lg rounded-4 mb-4">
+
+            <div class="card-header text-white py-4"
+                 style="background:#111827;">
+
+                <h3 class="mb-1 fw-bold">
+                    💼 Professional Information
+                </h3>
+
+                <small class="text-light">
+                    Tell owners what kind of work you are looking for.
+                </small>
+
+            </div>
+
+
+            <div class="card-body p-4">
+
+                <div class="row g-4">
+
+                    <div class="col-md-6">
+
+                        <label class="form-label fw-semibold">
+                            {{ form.expected_salary.label }}
+                        </label>
+
+                        {{ form.expected_salary }}
+
+                    </div>
+
+
+                    <div class="col-12">
+
+                        <label class="form-label fw-semibold">
+                            {{ form.bio.label }}
+                        </label>
+
+                        {{ form.bio }}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- AVAILABILITY -->
+
+        <div class="card border-0 shadow-lg rounded-4 mb-4">
+
+            <div class="card-header text-white py-4"
+                 style="background:#111827;">
+
+                <h3 class="mb-1 fw-bold">
+                    ⚙️ Availability & Privacy
+                </h3>
+
+                <small class="text-light">
+                    Control your availability and contact visibility.
+                </small>
+
+            </div>
+
+
+            <div class="card-body p-4">
+
+                <div class="row g-4">
+
+                    <div class="col-md-6">
+
+                        <div class="form-check form-switch">
+
+                            {{ form.available }}
+
+                            <label class="form-check-label fw-semibold">
+
+                                {{ form.available.label }}
+
+                            </label>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-6">
+
+                        <div class="form-check form-switch">
+
+                            {{ form.phone_visible }}
+
+                            <label class="form-check-label fw-semibold">
+
+                                {{ form.phone_visible.label }}
+
+                            </label>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- BUTTONS -->
+
+        <div class="d-flex justify-content-between align-items-center mt-5 mb-5">
+
+            <a href="{% url 'driver_dashboard' %}"
+               class="btn btn-outline-dark px-4 py-2 rounded-pill">
+
+                ← Back to Dashboard
+
+            </a>
+
+
+            <button type="submit"
+                    class="btn px-5 py-3 rounded-pill text-white fw-semibold shadow"
+                    style="background:linear-gradient(135deg,#2563eb,#1d4ed8);">
+
+                Save Profile ✓
+
+            </button>
+
+        </div>
+
+    </form>
+
+
+
+    <!-- BENEFITS -->
+
+    <div class="row g-4 mt-2">
+
+        <div class="col-md-4">
+
+            <div class="card border-0 shadow-sm rounded-4 text-center p-4 h-100">
+
+                <div class="fs-1 mb-3">
+                    🔎
+                </div>
+
+                <h5 class="fw-bold">
+                    Get Discovered
+                </h5>
+
+                <p class="text-muted mb-0">
+                    Vehicle owners can find you based on your location,
+                    experience and vehicle preference.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-md-4">
+
+            <div class="card border-0 shadow-sm rounded-4 text-center p-4 h-100">
+
+                <div class="fs-1 mb-3">
+                    🪪
+                </div>
+
+                <h5 class="fw-bold">
+                    Build Trust
+                </h5>
+
+                <p class="text-muted mb-0">
+                    Add accurate driving and licence information
+                    to build a professional profile.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-md-4">
+
+            <div class="card border-0 shadow-sm rounded-4 text-center p-4 h-100">
+
+                <div class="fs-1 mb-3">
+                    ⭐
+                </div>
+
+                <h5 class="fw-bold">
+                    Get Better Opportunities
+                </h5>
+
+                <p class="text-muted mb-0">
+                    A complete profile gives owners more information
+                    when choosing a driver.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

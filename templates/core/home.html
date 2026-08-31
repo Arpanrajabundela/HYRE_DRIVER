@@ -1,0 +1,510 @@
+{% extends "base.html" %}
+
+{% block title %}
+Hire Driver
+{% endblock %}
+
+{% block content %}
+
+<!-- HERO -->
+
+<section class="hero-section">
+
+<div class="container">
+
+<div class="row align-items-center">
+
+<div class="col-lg-6">
+
+<span class="hero-badge">
+
+India's Trusted Driver Hiring Platform
+
+</span>
+
+<h1 class="hero-title mt-3">
+
+Hire Professional Drivers
+
+<br>
+
+or
+
+<br>
+
+Find Your Next Driving Job
+
+</h1>
+
+<p class="hero-text mt-4">
+
+Whether you're looking for experienced drivers for your
+business or searching for your next driving opportunity,
+Hire Driver connects the right people at the right time.
+
+</p>
+
+<div class="mt-5">
+
+    {% if request.user.is_authenticated %}
+
+        {% if request.user.role == "owner" %}
+
+            <!-- OWNER -->
+            <a href="{% url 'find_drivers' %}"
+               class="btn btn-primary btn-lg px-4 me-3">
+                Hire a Driver
+            </a>
+
+        {% elif request.user.role == "driver" %}
+
+            <!-- DRIVER -->
+            <a href="{% url 'vehicle_owner' %}"
+               class="btn btn-outline-primary btn-lg px-4">
+                Become a Driver
+            </a>
+
+        {% endif %}
+
+    {% else %}
+
+        <!-- NOT LOGGED IN -->
+        <a href="{% url 'register' %}"
+           class="btn btn-primary btn-lg px-4 me-3">
+            Hire a Driver
+        </a>
+
+        <a href="{% url 'register' %}"
+           class="btn btn-outline-primary btn-lg px-4">
+            Become a Driver
+        </a>
+
+    {% endif %}
+
+</div>
+
+<div class="hero-info mt-5">
+
+<div>
+
+<h4>10K+</h4>
+
+<p>Drivers</p>
+
+</div>
+
+<div>
+
+<h4>2500+</h4>
+
+<p>Vehicle Owners</p>
+
+</div>
+
+<div>
+
+<h4>18</h4>
+
+<p>States</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-lg-6 text-center">
+
+<img
+    src="https://images.unsplash.com/photo-1519003722824-194d4455a60c?w=700"
+    class="img-fluid rounded-4 shadow">
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- CHOOSE -->
+
+<section class="choose-section">
+
+<div class="container">
+
+<div class="text-center mb-5">
+
+<h2 class="fw-bold">
+
+Who Are You?
+
+</h2>
+
+<p>
+
+Choose your journey and get started.
+
+</p>
+
+</div>
+
+<div class="row g-4">
+
+<div class="col-md-6">
+
+<div class="choice-card">
+
+<div class="display-5">
+
+🚛
+
+</div>
+
+<h3>
+
+Vehicle Owner
+
+</h3>
+
+<p>
+
+Search verified professional drivers,
+post hiring requirements and build
+your transport team.
+
+</p>
+
+{% if request.user.is_authenticated %}
+
+    <a href="{% url 'driver_list' %}"
+       class="btn btn-primary">
+        Find Drivers
+    </a>
+
+{% else %}
+
+    <a href="{% url 'register' %}"
+       class="btn btn-primary">
+        Find Drivers
+    </a>
+
+{% endif %}
+
+</div>
+
+</div>
+
+<div class="col-md-6">
+
+<div class="choice-card">
+
+<div class="display-5">
+
+👨‍✈️
+
+</div>
+
+<h3>
+
+Professional Driver
+
+</h3>
+
+<p>
+
+Create your profile,
+apply for jobs,
+and connect with transport companies.
+
+</p>
+
+{% if request.user.is_authenticated %}
+
+    <a href="{% url 'vehicle_owner' %}"
+       class="btn btn-primary">
+        Start Driving
+    </a>
+
+{% else %}
+
+    <a href="{% url 'register' %}"
+       class="btn btn-primary">
+        Start Driving
+    </a>
+
+{% endif %}
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ========================================================= -->
+<!-- LATEST DRIVER REQUIREMENTS -->
+<!-- ========================================================= -->
+
+<section class="py-5">
+
+    <div class="container">
+
+        <!-- Section Heading -->
+
+        <div class="text-center mb-5">
+
+            <span class="badge bg-primary px-3 py-2 rounded-pill">
+
+                🚛 DRIVER JOBS
+
+            </span>
+
+            <h2 class="fw-bold mt-3">
+
+                Latest Driver Requirements
+
+            </h2>
+
+            <p class="text-muted">
+
+                Find driving jobs posted by vehicle owners
+                and transport companies.
+
+            </p>
+
+        </div>
+
+
+        <!-- Requirements -->
+
+        <div class="row g-4">
+
+
+            {% for requirement in requirements %}
+
+
+                <div class="col-md-6 col-lg-4">
+
+                    <div class="card border-0 shadow-sm rounded-4 h-100">
+
+                        <div class="card-body p-4">
+
+
+                            <!-- Vehicle + Date -->
+
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+
+                                <span class="badge bg-light text-dark px-3 py-2">
+
+                                    🚛
+
+                                    {{ requirement.get_vehicle_type_display }}
+
+                                </span>
+
+
+                                <small class="text-muted">
+
+                                    {{ requirement.created_at|date:"d M Y" }}
+
+                                </small>
+
+                            </div>
+
+
+                            <!-- Requirement Title -->
+
+                            <h4 class="fw-bold">
+
+                                {{ requirement.title }}
+
+                            </h4>
+
+
+                            <!-- Location -->
+
+                            <p class="text-muted mb-2">
+
+                                📍
+
+                                {{ requirement.city }},
+                                {{ requirement.state }}
+
+                            </p>
+
+
+                            <!-- Experience -->
+
+                            <p class="mb-2">
+
+                                💼
+
+                                <strong>
+
+                                    {{ requirement.experience_required }}
+
+                                </strong>
+
+                                years experience
+
+                            </p>
+
+
+                            <!-- License -->
+
+                            <p class="mb-2">
+
+                                🪪
+
+                                <strong>
+
+                                    {{ requirement.get_license_type_display }}
+
+                                </strong>
+
+                                License
+
+                            </p>
+
+
+                            <!-- Salary -->
+
+                            {% if requirement.salary %}
+
+                                <p class="mb-3">
+
+                                    💰
+
+                                    <strong>
+
+                                        ₹{{ requirement.salary }}
+
+                                    </strong>
+
+                                    / month
+
+                                </p>
+
+                            {% else %}
+
+                                <p class="text-muted mb-3">
+
+                                    💰 Salary negotiable
+
+                                </p>
+
+                            {% endif %}
+
+
+                            <!-- Drivers Required -->
+
+                            <p class="text-muted">
+
+                                👨‍✈️
+
+                                {{ requirement.number_of_drivers }}
+
+                                driver{{ requirement.number_of_drivers|pluralize }}
+
+                                required
+
+                            </p>
+
+
+                            <hr>
+
+
+                            <!-- View & Apply -->
+                        {% if request.user.is_authenticated and request.user.role == "driver" %}
+                            <a
+                                href="{% url 'job_detail' requirement.id %}"
+                                class="btn btn-primary w-100 rounded-pill"
+                            >
+
+                                View & Apply →
+                            </a>
+                        {% endif %}
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            {% empty %}
+
+
+                <!-- No Requirements -->
+
+                <div class="col-12">
+
+                    <div class="text-center py-5">
+
+
+                        <div style="font-size: 65px;">
+
+                            🚛
+
+                        </div>
+
+
+                        <h4 class="fw-bold mt-3">
+
+                            No Driver Jobs Available
+
+                        </h4>
+
+
+                        <p class="text-muted">
+
+                            New driving opportunities will appear here
+                            when vehicle owners post requirements.
+
+                        </p>
+
+
+                    </div>
+
+                </div>
+
+
+            {% endfor %}
+
+
+        </div>
+
+
+        <!-- View All Jobs -->
+
+        {% if requirements and request.user.is_authenticated and request.user.role == "driver" %}
+
+            <div class="text-center mt-5">
+
+                <a
+                    href="{% url 'driver_jobs' %}"
+                    class="btn btn-outline-primary btn-lg rounded-pill px-5"
+                >
+
+                    View All Jobs →
+
+                </a>
+
+            </div>
+
+        {% endif %}
+
+
+    </div>
+
+</section>
+
+
+{% endblock %}

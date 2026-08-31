@@ -1,0 +1,439 @@
+{% extends "base.html" %}
+
+{% block title %}
+Driver Jobs
+{% endblock %}
+
+{% block content %}
+
+<style>
+
+    .jobs-page {
+        background: #f5f7fb;
+        min-height: 100vh;
+    }
+
+    .jobs-hero {
+        background: linear-gradient(
+            135deg,
+            #0f172a,
+            #1e3a8a,
+            #2563eb
+        );
+
+        border-radius: 28px;
+        color: white;
+    }
+
+    .job-card {
+        border: none;
+        border-radius: 22px;
+        background: white;
+
+        box-shadow:
+            0 8px 25px rgba(15, 23, 42, 0.07);
+
+        transition: 0.25s ease;
+    }
+
+    .job-card:hover {
+        transform: translateY(-5px);
+
+        box-shadow:
+            0 15px 35px rgba(15, 23, 42, 0.12);
+    }
+
+    .job-icon {
+        width: 60px;
+        height: 60px;
+
+        border-radius: 17px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        background: #eff6ff;
+
+        font-size: 30px;
+    }
+
+    .job-detail {
+        padding: 8px 0;
+    }
+
+    .salary {
+        color: #16a34a;
+        font-weight: 700;
+        font-size: 18px;
+    }
+
+    .job-badge {
+        background: #dcfce7;
+        color: #166534;
+        padding: 6px 12px;
+        border-radius: 20px;
+        font-size: 13px;
+        font-weight: 600;
+    }
+
+</style>
+
+
+<div class="jobs-page py-5">
+
+    <div class="container">
+
+
+        <!-- ========================= -->
+        <!-- HERO -->
+        <!-- ========================= -->
+
+        <div class="jobs-hero p-4 p-md-5 mb-5">
+
+            <div class="row align-items-center">
+
+                <div class="col-lg-8">
+
+                    <span class="badge bg-light text-primary rounded-pill px-3 py-2 mb-3">
+
+                        DRIVER JOBS
+
+                    </span>
+
+                    <h1 class="fw-bold display-6">
+
+                        Find Your Next Driving Job 🚛
+
+                    </h1>
+
+                    <p class="lead opacity-75 mt-3 mb-0">
+
+                        Browse active driver requirements posted by
+                        vehicle owners and transport businesses.
+
+                    </p>
+
+                </div>
+
+                <div class="col-lg-4 text-center">
+
+                    <div style="font-size: 90px;">
+                        👨‍✈️
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ========================= -->
+        <!-- JOB COUNT -->
+        <!-- ========================= -->
+
+        <div class="d-flex justify-content-between align-items-center mb-4">
+
+            <div>
+
+                <h3 class="fw-bold mb-1">
+                    Available Jobs
+                </h3>
+
+                <p class="text-muted mb-0">
+
+                    Find a job that matches your experience.
+
+                </p>
+
+            </div>
+
+            <span class="badge bg-primary rounded-pill px-3 py-2">
+
+                {{ requirements|length }} Jobs
+
+            </span>
+
+        </div>
+
+
+        <!-- ========================= -->
+        <!-- JOBS -->
+        <!-- ========================= -->
+
+        <div class="row g-4">
+
+
+            {% for requirement in requirements %}
+
+                <div class="col-lg-6">
+
+                    <div class="job-card p-4 h-100">
+
+
+                        <!-- JOB HEADER -->
+
+                        <div class="d-flex align-items-center mb-4">
+
+                            <div class="job-icon me-3">
+
+                                {% if requirement.vehicle_type == "TRUCK" %}
+                                    🚚
+                                {% elif requirement.vehicle_type == "BUS" %}
+                                    🚌
+                                {% elif requirement.vehicle_type == "TAXI" %}
+                                    🚖
+                                {% elif requirement.vehicle_type == "TEMPO" %}
+                                    🚐
+                                {% elif requirement.vehicle_type == "TRAILER" %}
+                                    🚛
+                                {% elif requirement.vehicle_type == "DUMPER" %}
+                                    🚜
+                                {% else %}
+                                    🚗
+                                {% endif %}
+
+                            </div>
+
+
+                            <div class="flex-grow-1">
+
+                                <h4 class="fw-bold mb-1">
+
+                                    {{ requirement.title }}
+
+                                </h4>
+
+                                <span class="text-muted">
+
+                                    {{ requirement.get_vehicle_type_display }}
+
+                                </span>
+
+                            </div>
+
+
+                            <span class="job-badge">
+
+                                Active
+
+                            </span>
+
+                        </div>
+
+
+                        <!-- JOB DETAILS -->
+
+                        <div class="row">
+
+
+                            <!-- Location -->
+
+                            <div class="col-6">
+
+                                <div class="job-detail">
+
+                                    <small class="text-muted d-block">
+                                        📍 Location
+                                    </small>
+
+                                    <strong>
+
+                                        {{ requirement.city }},
+                                        {{ requirement.state }}
+
+                                    </strong>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- Drivers -->
+
+                            <div class="col-6">
+
+                                <div class="job-detail">
+
+                                    <small class="text-muted d-block">
+                                        👨‍✈️ Drivers Needed
+                                    </small>
+
+                                    <strong>
+
+                                        {{ requirement.number_of_drivers }}
+
+                                    </strong>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- Experience -->
+
+                            <div class="col-6 mt-3">
+
+                                <div class="job-detail">
+
+                                    <small class="text-muted d-block">
+                                        💼 Experience
+                                    </small>
+
+                                    <strong>
+
+                                        {{ requirement.experience_required }}
+                                        years
+
+                                    </strong>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- License -->
+
+                            <div class="col-6 mt-3">
+
+                                <div class="job-detail">
+
+                                    <small class="text-muted d-block">
+                                        🪪 License
+                                    </small>
+
+                                    <strong>
+
+                                        {{ requirement.get_license_type_display }}
+
+                                    </strong>
+
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+
+                        <hr class="my-4">
+
+
+                        <!-- SALARY + BUTTON -->
+
+                        <div class="d-flex justify-content-between align-items-center">
+
+
+                            <div>
+
+                                <small class="text-muted d-block">
+                                    Monthly Salary
+                                </small>
+
+
+                                {% if requirement.salary %}
+
+                                    <span class="salary">
+
+                                        ₹{{ requirement.salary }}
+
+                                    </span>
+
+                                {% else %}
+
+                                    <span class="text-muted">
+
+                                        Salary Not Specified
+
+                                    </span>
+
+                                {% endif %}
+
+                            </div>
+
+
+                            <a
+                                href="{% url 'job_detail' requirement.id %}"
+                                class="btn btn-primary rounded-pill px-4"
+                            >
+
+                                View & Apply →
+
+                            </a>
+
+
+                        </div>
+
+
+                        <!-- POSTED DATE -->
+
+                        <div class="mt-3">
+
+                            <small class="text-muted">
+
+                                Posted
+                                {{ requirement.created_at|timesince }}
+                                ago
+
+                            </small>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+            {% empty %}
+
+
+                <!-- NO JOBS -->
+
+                <div class="col-12">
+
+                    <div class="text-center py-5">
+
+                        <div style="font-size: 80px;">
+                            🚛
+                        </div>
+
+                        <h3 class="fw-bold mt-3">
+
+                            No Jobs Available
+
+                        </h3>
+
+                        <p class="text-muted">
+
+                            There are currently no active driver
+                            requirements.
+
+                        </p>
+
+                        <a
+                            href="{% url 'vehicle_owner' %}"
+                            class="btn btn-outline-primary rounded-pill px-4"
+                        >
+
+                            Go Back
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+            {% endfor %}
+
+
+        </div>
+
+
+    </div>
+
+</div>
+
+{% endblock %}

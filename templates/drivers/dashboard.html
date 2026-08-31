@@ -1,0 +1,1009 @@
+{% extends "base.html" %}
+
+{% block title %}
+Driver Dashboard
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-4">
+
+
+    <!-- ===================================================== -->
+    <!-- WELCOME HEADER -->
+    <!-- ===================================================== -->
+
+    <div class="p-5 mb-5 rounded-4 shadow-lg text-white"
+         style="background: linear-gradient(135deg, #0f172a, #2563eb);">
+
+        <div class="row align-items-center">
+
+            <!-- Welcome Text -->
+
+            <div class="col-md-8">
+
+                <span class="badge bg-light text-primary rounded-pill px-3 py-2 mb-3">
+                    Driver Dashboard
+                </span>
+
+                <h1 class="fw-bold display-6">
+
+                    Welcome,
+                    {{ request.user.full_name }}
+                    👋
+
+                </h1>
+
+                <p class="fs-5 mt-3 opacity-75">
+
+                    Manage your professional driver profile,
+                    availability and job applications.
+
+                </p>
+
+                <a
+                    href="{% url 'driver_complete_profile' %}"
+                    class="btn btn-light rounded-pill px-4 mt-3"
+                >
+                    ✏️ Edit Profile
+                </a>
+
+            </div>
+
+
+            <!-- Profile Picture -->
+
+            <div class="col-md-4 text-center mt-4 mt-md-0">
+
+                {% if profile.profile_picture %}
+
+                    <img
+                        src="{{ profile.profile_picture.url }}"
+                        alt="Driver Profile"
+                        class="rounded-circle shadow"
+                        style="
+                            width:150px;
+                            height:150px;
+                            object-fit:cover;
+                            border:5px solid white;
+                        "
+                    >
+
+                {% else %}
+
+                    <div
+                        class="rounded-circle bg-white text-primary
+                               d-inline-flex align-items-center
+                               justify-content-center shadow"
+                        style="
+                            width:150px;
+                            height:150px;
+                            font-size:70px;
+                        "
+                    >
+                        👨‍✈️
+                    </div>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ===================================================== -->
+    <!-- DRIVER QUICK STATS -->
+    <!-- ===================================================== -->
+
+    <div class="row g-4 mb-5">
+
+
+        <!-- Experience -->
+
+        <div class="col-md-3">
+
+            <div class="card border-0 shadow-sm rounded-4 h-100">
+
+                <div class="card-body p-4">
+
+                    <div class="fs-2 mb-2">
+                        🛣️
+                    </div>
+
+                    <small class="text-muted">
+                        Experience
+                    </small>
+
+                    <h4 class="fw-bold mt-2">
+
+                        {% if profile.experience %}
+                            {{ profile.experience }} Years
+                        {% else %}
+                            Not Added
+                        {% endif %}
+
+                    </h4>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- License -->
+
+        <div class="col-md-3">
+
+            <div class="card border-0 shadow-sm rounded-4 h-100">
+
+                <div class="card-body p-4">
+
+                    <div class="fs-2 mb-2">
+                        🪪
+                    </div>
+
+                    <small class="text-muted">
+                        License Type
+                    </small>
+
+                    <h4 class="fw-bold mt-2">
+
+                        {% if profile.license_type %}
+                            {{ profile.license_type }}
+                        {% else %}
+                            Not Added
+                        {% endif %}
+
+                    </h4>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Preferred Vehicle -->
+
+        <div class="col-md-3">
+
+            <div class="card border-0 shadow-sm rounded-4 h-100">
+
+                <div class="card-body p-4">
+
+                    <div class="fs-2 mb-2">
+                        🚛
+                    </div>
+
+                    <small class="text-muted">
+                        Preferred Vehicle
+                    </small>
+
+                    <h4 class="fw-bold mt-2">
+
+                        {% if profile.preferred_vehicle %}
+                            {{ profile.preferred_vehicle }}
+                        {% else %}
+                            Not Added
+                        {% endif %}
+
+                    </h4>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Availability -->
+
+        <div class="col-md-3">
+
+            <div class="card border-0 shadow-sm rounded-4 h-100">
+
+                <div class="card-body p-4">
+
+                    <div class="fs-2 mb-2">
+                        {% if profile.available %}
+                            🟢
+                        {% else %}
+                            🔴
+                        {% endif %}
+                    </div>
+
+                    <small class="text-muted">
+                        Availability
+                    </small>
+
+                    <h4 class="fw-bold mt-2">
+
+                        {% if profile.available %}
+
+                            <span class="text-success">
+                                Available
+                            </span>
+
+                        {% else %}
+
+                            <span class="text-danger">
+                                Unavailable
+                            </span>
+
+                        {% endif %}
+
+                    </h4>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ===================================================== -->
+    <!-- PROFILE COMPLETION -->
+    <!-- ===================================================== -->
+
+    <div class="card border-0 shadow-sm rounded-4 mb-5">
+
+        <div class="card-body p-4">
+
+            <div class="d-flex justify-content-between
+                        align-items-center mb-3">
+
+                <div>
+
+                    <h4 class="fw-bold mb-1">
+                        Profile Completion
+                    </h4>
+
+                    <p class="text-muted mb-0">
+                        Complete your profile to improve your chances
+                        of getting hired.
+                    </p>
+
+                </div>
+
+                <span class="badge bg-primary rounded-pill px-3 py-2">
+
+                    {{ profile_completion }}%
+
+                </span>
+
+            </div>
+
+
+            <!-- Progress Bar -->
+
+            <div
+                class="progress"
+                style="height:12px;"
+            >
+
+                <div
+                    class="progress-bar"
+                    role="progressbar"
+                    style="width: {{ profile_completion }}%;"
+                    aria-valuenow="{{ profile_completion }}"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                >
+                </div>
+
+            </div>
+
+
+            {% if profile_completion < 100 %}
+
+                <div class="d-flex justify-content-between
+                            align-items-center mt-3">
+
+                    <small class="text-muted">
+
+                        Keep adding your professional details.
+
+                    </small>
+
+                    <a
+                        href="{% url 'driver_complete_profile' %}"
+                        class="btn btn-sm btn-primary rounded-pill px-3"
+                    >
+                        Complete Profile →
+                    </a>
+
+                </div>
+
+            {% else %}
+
+                <div class="mt-3">
+
+                    <span class="text-success fw-semibold">
+
+                        🎉 Your driver profile is complete!
+
+                    </span>
+
+                </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ===================================================== -->
+    <!-- DRIVER INFORMATION -->
+    <!-- ===================================================== -->
+
+    <div class="card border-0 shadow rounded-4 mb-5">
+
+        <div class="card-body p-4">
+
+
+            <!-- Heading -->
+
+            <div class="d-flex
+                        justify-content-between
+                        align-items-center">
+
+                <h3 class="fw-bold mb-0">
+                    Driver Information
+                </h3>
+
+                <a
+                    href="{% url 'driver_complete_profile' %}"
+                    class="btn btn-primary rounded-pill px-4"
+                >
+                    ✏️ Edit
+                </a>
+
+            </div>
+
+
+            <hr class="my-4">
+
+
+            <div class="row g-4">
+
+
+                <!-- License Number -->
+
+                <div class="col-md-6">
+
+                    <div class="p-3 bg-light rounded-3">
+
+                        <small class="text-muted">
+                            License Number
+                        </small>
+
+                        <div class="fw-semibold mt-1">
+
+                            {% if profile.license_number %}
+                                {{ profile.license_number }}
+                            {% else %}
+                                Not Added
+                            {% endif %}
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- License Type -->
+
+                <div class="col-md-6">
+
+                    <div class="p-3 bg-light rounded-3">
+
+                        <small class="text-muted">
+                            License Type
+                        </small>
+
+                        <div class="fw-semibold mt-1">
+
+                            {% if profile.license_type %}
+                                {{ profile.license_type }}
+                            {% else %}
+                                Not Added
+                            {% endif %}
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Preferred Vehicle -->
+
+                <div class="col-md-6">
+
+                    <div class="p-3 bg-light rounded-3">
+
+                        <small class="text-muted">
+                            Preferred Vehicle
+                        </small>
+
+                        <div class="fw-semibold mt-1">
+
+                            {% if profile.preferred_vehicle %}
+                                {{ profile.preferred_vehicle }}
+                            {% else %}
+                                Not Added
+                            {% endif %}
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Experience -->
+
+                <div class="col-md-6">
+
+                    <div class="p-3 bg-light rounded-3">
+
+                        <small class="text-muted">
+                            Driving Experience
+                        </small>
+
+                        <div class="fw-semibold mt-1">
+
+                            {% if profile.experience %}
+                                {{ profile.experience }} Years
+                            {% else %}
+                                Not Added
+                            {% endif %}
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Location -->
+
+                <div class="col-md-6">
+
+                    <div class="p-3 bg-light rounded-3">
+
+                        <small class="text-muted">
+                            Location
+                        </small>
+
+                        <div class="fw-semibold mt-1">
+
+                            {% if profile.city %}
+                                {{ profile.city }}
+                            {% endif %}
+
+                            {% if profile.state %}
+                                , {{ profile.state }}
+                            {% endif %}
+
+                            {% if not profile.city and not profile.state %}
+                                Not Added
+                            {% endif %}
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Expected Salary -->
+
+                <div class="col-md-6">
+
+                    <div class="p-3 bg-light rounded-3">
+
+                        <small class="text-muted">
+                            Expected Monthly Salary
+                        </small>
+
+                        <div class="fw-semibold mt-1">
+
+                            {% if profile.expected_salary %}
+
+                                ₹{{ profile.expected_salary }}
+
+                            {% else %}
+
+                                Not Added
+
+                            {% endif %}
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Verification -->
+
+                <div class="col-md-6">
+
+                    <div class="p-3 bg-light rounded-3">
+
+                        <small class="text-muted">
+                            Verification
+                        </small>
+
+                        <div class="mt-1">
+
+                            {% if profile.is_verified %}
+
+                                <span class="badge bg-success">
+                                    ✓ Verified Driver
+                                </span>
+
+                            {% else %}
+
+                                <span class="badge bg-warning text-dark">
+                                    Pending Verification
+                                </span>
+
+                            {% endif %}
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Phone Visibility -->
+
+                <div class="col-md-6">
+
+                    <div class="p-3 bg-light rounded-3">
+
+                        <small class="text-muted">
+                            Phone Visibility
+                        </small>
+
+                        <div class="mt-1">
+
+                            {% if profile.phone_visible %}
+
+                                <span class="badge bg-success">
+                                    Phone Visible
+                                </span>
+
+                            {% else %}
+
+                                <span class="badge bg-secondary">
+                                    Phone Hidden
+                                </span>
+
+                            {% endif %}
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- About Me -->
+
+            {% if profile.bio %}
+
+                <div class="mt-4">
+
+                    <h5 class="fw-bold">
+                        About Me
+                    </h5>
+
+                    <p class="text-muted mb-0">
+                        {{ profile.bio }}
+                    </p>
+
+                </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ===================================================== -->
+    <!-- AVAILABILITY -->
+    <!-- ===================================================== -->
+
+    <div class="card border-0 shadow-sm rounded-4 mb-5">
+
+        <div class="card-body p-4">
+
+            <div class="row align-items-center">
+
+                <div class="col-md-8">
+
+                    {% if profile.available %}
+
+                        <h4 class="fw-bold text-success">
+                            🟢 You are currently available
+                        </h4>
+
+                        <p class="text-muted mb-0">
+
+                            Vehicle owners can find your profile
+                            when searching for available drivers.
+
+                        </p>
+
+                    {% else %}
+
+                        <h4 class="fw-bold text-danger">
+                            🔴 You are currently unavailable
+                        </h4>
+
+                        <p class="text-muted mb-0">
+
+                            Vehicle owners may not see you as
+                            an available driver.
+
+                        </p>
+
+                    {% endif %}
+
+                </div>
+
+
+                <div class="col-md-4 text-md-end mt-3 mt-md-0">
+
+                    <a
+                        href="{% url 'driver_complete_profile' %}"
+                        class="btn btn-outline-primary rounded-pill px-4"
+                    >
+                        Change Availability
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ===================================================== -->
+    <!-- MY APPLICATIONS -->
+    <!-- ===================================================== -->
+
+    <div class="card border-0 shadow-sm rounded-4 mb-5">
+
+        <div class="card-body p-4">
+
+
+            <div class="d-flex
+                        justify-content-between
+                        align-items-center mb-4">
+
+                <div>
+
+                    <h3 class="fw-bold mb-1">
+                        My Applications
+                    </h3>
+
+                    <p class="text-muted mb-0">
+                        Track the jobs you have applied for.
+                    </p>
+
+                </div>
+
+
+                <a
+                    href="{% url 'driver_jobs' %}"
+                    class="btn btn-outline-primary rounded-pill px-4"
+                >
+                    Find Jobs →
+                </a>
+
+            </div>
+
+
+            {% if applications %}
+
+                <div class="row g-4">
+
+                    {% for application in applications %}
+
+                        <div class="col-md-6">
+
+                            <div class="card border rounded-4 h-100">
+
+                                <div class="card-body p-4">
+
+
+                                    <!-- Job Title -->
+
+                                    <h5 class="fw-bold">
+
+                                        {{ application.requirement.title }}
+
+                                    </h5>
+
+
+                                    <!-- Vehicle -->
+
+                                    <p class="text-muted mb-2">
+
+                                        🚛
+                                        {{ application.requirement.get_vehicle_type_display }}
+
+                                    </p>
+
+
+                                    <!-- Location -->
+
+                                    <p class="text-muted mb-2">
+
+                                        📍
+                                        {{ application.requirement.city }},
+                                        {{ application.requirement.state }}
+
+                                    </p>
+
+
+                                    <!-- Application Date -->
+
+                                    <p class="text-muted mb-3">
+
+                                        Applied:
+                                        {{ application.created_at|date:"d M Y" }}
+
+                                    </p>
+
+
+                                    <!-- Status -->
+
+                                    {% if application.status == "PENDING" %}
+
+                                        <span
+                                            class="badge bg-warning text-dark
+                                                   rounded-pill px-3 py-2"
+                                        >
+                                            Pending
+                                        </span>
+
+                                    {% elif application.status == "ACCEPTED" %}
+
+                                        <span
+                                            class="badge bg-success
+                                                   rounded-pill px-3 py-2"
+                                        >
+                                            Accepted
+                                        </span>
+
+                                    {% elif application.status == "REJECTED" %}
+
+                                        <span
+                                            class="badge bg-danger
+                                                   rounded-pill px-3 py-2"
+                                        >
+                                            Rejected
+                                        </span>
+
+                                    {% endif %}
+
+
+                                    <!-- Owner Response -->
+
+                                    {% if application.owner_response %}
+
+                                        <hr>
+
+                                        <strong>
+                                            Owner Response
+                                        </strong>
+
+                                        <p class="text-muted mt-2 mb-0">
+
+                                            {{ application.owner_response }}
+
+                                        </p>
+
+                                    {% endif %}
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+
+            {% else %}
+
+
+                <!-- No Applications -->
+
+                <div class="text-center py-5">
+
+                    <div style="font-size:50px;">
+                        📋
+                    </div>
+
+                    <h5 class="fw-bold mt-3">
+                        No Applications Yet
+                    </h5>
+
+                    <p class="text-muted">
+
+                        You haven't applied for any driver jobs yet.
+
+                    </p>
+
+                    <a
+                        href="{% url 'driver_jobs' %}"
+                        class="btn btn-primary rounded-pill px-4"
+                    >
+                        Find Driver Jobs →
+                    </a>
+
+                </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ===================================================== -->
+    <!-- QUICK ACTIONS -->
+    <!-- ===================================================== -->
+
+    <h3 class="fw-bold mb-4">
+        Quick Actions
+    </h3>
+
+
+    <div class="row g-4 mb-5">
+
+
+        <!-- Find Jobs -->
+
+        <div class="col-md-6 col-lg-4">
+
+            <a
+                href="{% url 'driver_jobs' %}"
+                class="text-decoration-none"
+            >
+
+                <div class="card border-0 shadow-sm
+                            rounded-4 h-100">
+
+                    <div class="card-body p-4 text-center">
+
+                        <div class="display-5 mb-3">
+                            🔎
+                        </div>
+
+                        <h5 class="fw-bold text-dark">
+                            Find Driver Jobs
+                        </h5>
+
+                        <p class="text-muted mb-0">
+
+                            Browse available driving
+                            opportunities.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </a>
+
+        </div>
+
+
+        <!-- My Applications -->
+
+        <div class="col-md-6 col-lg-4">
+
+            <a
+                href="#applications"
+                class="text-decoration-none"
+            >
+
+                <div class="card border-0 shadow-sm
+                            rounded-4 h-100">
+
+                    <div class="card-body p-4 text-center">
+
+                        <div class="display-5 mb-3">
+                            📋
+                        </div>
+
+                        <h5 class="fw-bold text-dark">
+                            My Applications
+                        </h5>
+
+                        <p class="text-muted mb-0">
+
+                            Track your application status.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </a>
+
+        </div>
+
+
+        <!-- Update Profile -->
+
+        <div class="col-md-6 col-lg-4">
+
+            <a
+                href="{% url 'driver_complete_profile' %}"
+                class="text-decoration-none"
+            >
+
+                <div class="card border-0 shadow-sm
+                            rounded-4 h-100">
+
+                    <div class="card-body p-4 text-center">
+
+                        <div class="display-5 mb-3">
+                            ✏️
+                        </div>
+
+                        <h5 class="fw-bold text-dark">
+                            Update Profile
+                        </h5>
+
+                        <p class="text-muted mb-0">
+
+                            Keep your professional information
+                            up to date.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </a>
+
+        </div>
+
+    </div>
+
+
+</div>
+
+{% endblock %}

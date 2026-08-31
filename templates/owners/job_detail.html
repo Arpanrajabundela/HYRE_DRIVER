@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ requirement.title }}
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <div class="card border-0 shadow-sm rounded-4 p-4 p-md-5">
+
+        <div class="mb-4">
+
+            <span class="badge bg-success rounded-pill px-3 py-2">
+                ACTIVE JOB
+            </span>
+
+            <h1 class="fw-bold mt-3">
+                {{ requirement.title }}
+            </h1>
+
+            <p class="text-muted fs-5">
+                🚚 {{ requirement.get_vehicle_type_display }}
+            </p>
+
+        </div>
+
+        <hr>
+
+        <div class="row g-4 mt-2">
+
+            <div class="col-md-6">
+                <strong>📍 Location</strong>
+                <p class="text-muted">
+                    {{ requirement.city }}, {{ requirement.state }}
+                </p>
+            </div>
+
+            <div class="col-md-6">
+                <strong>👨‍✈️ Drivers Needed</strong>
+                <p class="text-muted">
+                    {{ requirement.number_of_drivers }}
+                </p>
+            </div>
+
+            <div class="col-md-6">
+                <strong>💼 Experience Required</strong>
+                <p class="text-muted">
+                    {{ requirement.experience_required }} years
+                </p>
+            </div>
+
+            <div class="col-md-6">
+                <strong>🪪 Required License</strong>
+                <p class="text-muted">
+                    {{ requirement.get_license_type_display }}
+                </p>
+            </div>
+
+            <div class="col-md-6">
+                <strong>💰 Monthly Salary</strong>
+
+                {% if requirement.salary %}
+                    <p class="text-success fw-bold">
+                        ₹{{ requirement.salary }}
+                    </p>
+                {% else %}
+                    <p class="text-muted">
+                        Salary not specified
+                    </p>
+                {% endif %}
+
+            </div>
+
+        </div>
+
+        <hr class="my-4">
+
+        <div>
+
+            <h4 class="fw-bold">
+                Job Description
+            </h4>
+
+            <p class="text-muted mt-3">
+                {{ requirement.description|linebreaks }}
+            </p>
+
+        </div>
+
+        <div class="mt-4">
+
+            <a
+    href="{% url 'apply_for_job' requirement.id %}"
+    class="btn btn-primary rounded-pill px-5"
+>
+    Apply for this Job →
+</a>
+
+            <a
+                href="{% url 'driver_jobs' %}"
+                class="btn btn-outline-secondary rounded-pill px-4 ms-2"
+            >
+                ← Back to Jobs
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

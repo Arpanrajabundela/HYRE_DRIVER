@@ -1,0 +1,185 @@
+{% extends "base.html" %}
+
+{% block title %}
+Application Submitted
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col-lg-7">
+
+            <div class="card border-0 shadow-sm rounded-4">
+
+                <div class="card-body p-4 p-md-5 text-center">
+
+                    {% if created %}
+
+                        <div style="font-size: 70px;">
+                            ✅
+                        </div>
+
+                        <h1 class="fw-bold mt-3">
+                            Application Submitted!
+                        </h1>
+
+                        <p class="text-muted fs-5 mt-3">
+                            Your application has been successfully submitted
+                            for this job.
+                        </p>
+
+                    {% else %}
+
+                        <div style="font-size: 70px;">
+                            📋
+                        </div>
+
+                        <h1 class="fw-bold mt-3">
+                            Already Applied
+                        </h1>
+
+                        <p class="text-muted fs-5 mt-3">
+                            You have already applied for this job.
+                        </p>
+
+                    {% endif %}
+
+
+                    <hr class="my-4">
+
+
+                    <!-- Job Information -->
+
+                    <div class="text-start">
+
+                        <h4 class="fw-bold mb-3">
+                            {{ requirement.title }}
+                        </h4>
+
+                        <p class="mb-2">
+                            🚚
+                            <strong>Vehicle:</strong>
+                            {{ requirement.get_vehicle_type_display }}
+                        </p>
+
+                        <p class="mb-2">
+                            📍
+                            <strong>Location:</strong>
+                            {{ requirement.city }},
+                            {{ requirement.state }}
+                        </p>
+
+                        <p class="mb-2">
+                            💼
+                            <strong>Experience:</strong>
+                            {{ requirement.experience_required }}
+                            years
+                        </p>
+
+                        <p class="mb-2">
+                            🪪
+                            <strong>License:</strong>
+                            {{ requirement.get_license_type_display }}
+                        </p>
+
+                        {% if requirement.salary %}
+
+                            <p class="mb-2">
+                                💰
+                                <strong>Salary:</strong>
+                                ₹{{ requirement.salary }} / month
+                            </p>
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <hr class="my-4">
+
+
+                    <!-- Application Status -->
+
+                    <div class="text-start">
+
+                        <h5 class="fw-bold">
+                            Application Status
+                        </h5>
+
+                        {% if application.status == "PENDING" %}
+
+                            <span class="badge bg-warning text-dark rounded-pill px-3 py-2">
+                                ⏳ Pending
+                            </span>
+
+                            <p class="text-muted mt-2 mb-0">
+                                The vehicle owner has not responded yet.
+                            </p>
+
+                        {% elif application.status == "ACCEPTED" %}
+
+                            <span class="badge bg-success rounded-pill px-3 py-2">
+                                ✓ Accepted
+                            </span>
+
+                            <p class="text-muted mt-2 mb-0">
+                                Congratulations! Your application has been accepted.
+                            </p>
+
+                        {% elif application.status == "REJECTED" %}
+
+                            <span class="badge bg-danger rounded-pill px-3 py-2">
+                                ✕ Rejected
+                            </span>
+
+                            <p class="text-muted mt-2 mb-0">
+                                Your application was not accepted for this job.
+                            </p>
+
+                        {% endif %}
+
+                    </div>
+
+
+                    {% if application.owner_response %}
+
+                        <div class="alert alert-light border rounded-4 text-start mt-4">
+
+                            <strong>
+                                💬 Owner Response
+                            </strong>
+
+                            <p class="mb-0 mt-2">
+                                {{ application.owner_response }}
+                            </p>
+
+                        </div>
+
+                    {% endif %}
+
+
+                    <div class="mt-4">
+
+                        <a
+                            href="{% url 'driver_jobs' %}"
+                            class="btn btn-primary rounded-pill px-4"
+                        >
+                            ← Back to Jobs
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

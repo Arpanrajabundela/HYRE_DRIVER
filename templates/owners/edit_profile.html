@@ -1,0 +1,615 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<style>
+
+    .profile-page {
+        background: #f5f7fb;
+        min-height: 100vh;
+    }
+
+    .profile-hero {
+        background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 55%, #2563eb 100%);
+        border-radius: 28px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .profile-hero::before {
+        content: "";
+        position: absolute;
+        width: 280px;
+        height: 280px;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.06);
+        right: -80px;
+        top: -100px;
+    }
+
+    .profile-hero::after {
+        content: "";
+        position: absolute;
+        width: 180px;
+        height: 180px;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.04);
+        right: 180px;
+        bottom: -100px;
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 2;
+    }
+
+    .hero-icon {
+        font-size: 85px;
+    }
+
+    .profile-card {
+        border: none;
+        border-radius: 24px;
+        box-shadow: 0 12px 35px rgba(15, 23, 42, 0.08);
+        background: white;
+    }
+
+    .section-title {
+        font-weight: 700;
+        color: #0f172a;
+    }
+
+    .section-subtitle {
+        color: #64748b;
+        font-size: 14px;
+    }
+
+    .section-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #eff6ff;
+        font-size: 23px;
+    }
+
+    .form-control,
+    .form-select {
+        border: 1px solid #dbe2ea;
+        border-radius: 12px;
+        padding: 12px 15px;
+        min-height: 48px;
+        transition: 0.2s ease;
+    }
+
+    .form-control:focus,
+    .form-select:focus {
+        border-color: #2563eb;
+        box-shadow: 0 0 0 0.2rem rgba(37, 99, 235, 0.12);
+    }
+
+    textarea.form-control {
+        min-height: 120px;
+    }
+
+    .field-label {
+        font-weight: 600;
+        color: #334155;
+        margin-bottom: 8px;
+    }
+
+    .profile-picture-box {
+        background: #f8fafc;
+        border: 2px dashed #cbd5e1;
+        border-radius: 20px;
+        padding: 25px;
+        text-align: center;
+    }
+
+    .profile-picture-icon {
+        width: 90px;
+        height: 90px;
+        border-radius: 50%;
+        background: #dbeafe;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 15px;
+        font-size: 42px;
+    }
+
+    .save-btn {
+        background: linear-gradient(135deg, #2563eb, #1d4ed8);
+        border: none;
+        border-radius: 14px;
+        padding: 13px 30px;
+        color: white;
+        font-weight: 600;
+        transition: 0.2s ease;
+    }
+
+    .save-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
+        color: white;
+    }
+
+    .cancel-btn {
+        border-radius: 14px;
+        padding: 13px 25px;
+    }
+
+    .info-card {
+        border: none;
+        border-radius: 20px;
+        background: white;
+        box-shadow: 0 8px 25px rgba(15, 23, 42, 0.06);
+        height: 100%;
+    }
+
+    .info-icon {
+        font-size: 35px;
+    }
+
+</style>
+
+
+<div class="profile-page py-5">
+
+    <div class="container">
+
+
+        <!-- HERO -->
+
+        <div class="profile-hero p-5 mb-5 text-white">
+
+            <div class="hero-content">
+
+                <div class="row align-items-center">
+
+                    <div class="col-lg-8">
+
+                        <span class="badge bg-light text-primary px-3 py-2 rounded-pill mb-3">
+                            OWNER PROFILE
+                        </span>
+
+                        <h1 class="fw-bold display-6">
+                            Build Your Owner Profile 🚛
+                        </h1>
+
+                        <p class="fs-5 mt-3 mb-0 opacity-75">
+
+                            Tell drivers about your business, vehicles and location.
+                            A complete profile helps you build trust.
+
+                        </p>
+
+                    </div>
+
+
+                    <div class="col-lg-4 text-center">
+
+                        <div class="hero-icon">
+                            🚚
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- FORM -->
+
+        <form method="POST" enctype="multipart/form-data">
+
+            {% csrf_token %}
+
+
+            <!-- PERSONAL / PROFILE -->
+
+            <div class="profile-card p-4 p-md-5 mb-4">
+
+                <div class="d-flex align-items-center mb-4">
+
+                    <div class="section-icon me-3">
+                        👤
+                    </div>
+
+                    <div>
+
+                        <h4 class="section-title mb-1">
+                            Profile Information
+                        </h4>
+
+                        <p class="section-subtitle mb-0">
+                            Add your profile picture and basic information.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="row g-4">
+
+                    <div class="col-md-6">
+
+                        <label class="field-label">
+                            Profile Picture
+                        </label>
+
+                        <div class="profile-picture-box">
+
+                            <div class="profile-picture-icon">
+                                👤
+                            </div>
+
+                            {{ form.profile_picture }}
+
+                            <small class="text-muted d-block mt-2">
+                                JPG, PNG or other supported image
+                            </small>
+
+                        </div>
+
+                        {% if form.profile_picture.errors %}
+                            <div class="text-danger small mt-2">
+                                {{ form.profile_picture.errors }}
+                            </div>
+                        {% endif %}
+
+                    </div>
+
+
+                    <div class="col-md-6">
+
+                        <label class="field-label">
+                            Owner Type
+                        </label>
+
+                        {{ form.owner_type }}
+
+                        {% if form.owner_type.errors %}
+                            <div class="text-danger small mt-2">
+                                {{ form.owner_type.errors }}
+                            </div>
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- BUSINESS INFORMATION -->
+
+            <div class="profile-card p-4 p-md-5 mb-4">
+
+                <div class="d-flex align-items-center mb-4">
+
+                    <div class="section-icon me-3">
+                        🏢
+                    </div>
+
+                    <div>
+
+                        <h4 class="section-title mb-1">
+                            Business Information
+                        </h4>
+
+                        <p class="section-subtitle mb-0">
+                            Tell drivers about your transport business.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="row g-4">
+
+                    <div class="col-md-6">
+
+                        <label class="field-label">
+                            Company / Business Name
+                        </label>
+
+                        {{ form.company_name }}
+
+                        {% if form.company_name.errors %}
+                            <div class="text-danger small mt-2">
+                                {{ form.company_name.errors }}
+                            </div>
+                        {% endif %}
+
+                    </div>
+
+
+                    <div class="col-md-6">
+
+                        <label class="field-label">
+                            Number of Vehicles 🚚
+                        </label>
+
+                        {{ form.number_of_vehicles }}
+
+                        {% if form.number_of_vehicles.errors %}
+                            <div class="text-danger small mt-2">
+                                {{ form.number_of_vehicles.errors }}
+                            </div>
+                        {% endif %}
+
+                    </div>
+
+
+                    <div class="col-12">
+
+                        <label class="field-label">
+                            About Your Business
+                        </label>
+
+                        {{ form.about }}
+
+                        <small class="text-muted">
+                            Example: What type of transport work do you do?
+                            What kind of drivers are you usually looking for?
+                        </small>
+
+                        {% if form.about.errors %}
+                            <div class="text-danger small mt-2">
+                                {{ form.about.errors }}
+                            </div>
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- LOCATION -->
+
+            <div class="profile-card p-4 p-md-5 mb-4">
+
+                <div class="d-flex align-items-center mb-4">
+
+                    <div class="section-icon me-3">
+                        📍
+                    </div>
+
+                    <div>
+
+                        <h4 class="section-title mb-1">
+                            Business Location
+                        </h4>
+
+                        <p class="section-subtitle mb-0">
+                            Help drivers know where your business is located.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="row g-4">
+
+                    <div class="col-md-6">
+
+                        <label class="field-label">
+                            City
+                        </label>
+
+                        {{ form.city }}
+
+                    </div>
+
+
+                    <div class="col-md-6">
+
+                        <label class="field-label">
+                            State
+                        </label>
+
+                        {{ form.state }}
+
+                    </div>
+
+
+                    <div class="col-12">
+
+                        <label class="field-label">
+                            Complete Address
+                        </label>
+
+                        {{ form.address }}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- CONTACT -->
+
+            <div class="profile-card p-4 p-md-5 mb-4">
+
+                <div class="d-flex align-items-center mb-4">
+
+                    <div class="section-icon me-3">
+                        📞
+                    </div>
+
+                    <div>
+
+                        <h4 class="section-title mb-1">
+                            Contact Preferences
+                        </h4>
+
+                        <p class="section-subtitle mb-0">
+                            Choose whether drivers can see your phone number.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="p-3 rounded-3 bg-light">
+
+                    <div class="form-check">
+
+                        {{ form.phone_visible }}
+
+                        <label class="form-check-label fw-semibold">
+
+                            Show my phone number to drivers
+
+                        </label>
+
+                    </div>
+
+                    <small class="text-muted ms-4">
+                        You can change this setting anytime.
+                    </small>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- SAVE AREA -->
+
+            <div class="profile-card p-4 p-md-5 mb-5">
+
+                <div class="row align-items-center">
+
+                    <div class="col-md-7">
+
+                        <h4 class="fw-bold mb-2">
+                            Ready to save your profile?
+                        </h4>
+
+                        <p class="text-muted mb-md-0">
+                            Your information will be updated on your owner dashboard.
+                        </p>
+
+                    </div>
+
+
+                    <div class="col-md-5 text-md-end mt-3 mt-md-0">
+
+                        <a href="{% url 'owner_dashboard' %}"
+                           class="btn btn-outline-secondary cancel-btn me-2">
+
+                            ← Cancel
+
+                        </a>
+
+
+                        <button type="submit"
+                                class="save-btn">
+
+                            Save Profile ✓
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </form>
+
+
+
+        <!-- BENEFITS -->
+
+        <div class="row g-4">
+
+            <div class="col-md-4">
+
+                <div class="info-card text-center p-4">
+
+                    <div class="info-icon mb-3">
+                        🔐
+                    </div>
+
+                    <h5 class="fw-bold">
+                        Your Data is Safe
+                    </h5>
+
+                    <p class="text-muted mb-0">
+                        Your personal and business information is protected.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-4">
+
+                <div class="info-card text-center p-4">
+
+                    <div class="info-icon mb-3">
+                        👨‍🔧
+                    </div>
+
+                    <h5 class="fw-bold">
+                        Connect With Drivers
+                    </h5>
+
+                    <p class="text-muted mb-0">
+                        A complete profile helps drivers understand your requirements.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-4">
+
+                <div class="info-card text-center p-4">
+
+                    <div class="info-icon mb-3">
+                        ⭐
+                    </div>
+
+                    <h5 class="fw-bold">
+                        Build Your Reputation
+                    </h5>
+
+                    <p class="text-muted mb-0">
+                        Give drivers confidence with a complete business profile.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+{% endblock %}

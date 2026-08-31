@@ -1,0 +1,493 @@
+{% extends "base.html" %}
+
+{% block title %}
+Post Driver Requirement
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <!-- ================================================= -->
+    <!-- HEADER -->
+    <!-- ================================================= -->
+
+    <div class="p-5 rounded-4 shadow-lg mb-5 text-white"
+         style="background: linear-gradient(135deg, #0f172a, #2563eb);">
+
+        <div class="row align-items-center">
+
+            <div class="col-md-8">
+
+                <h1 class="fw-bold display-6">
+                    Post a Driver Requirement 🚛
+                </h1>
+
+                <p class="fs-5 mt-3 opacity-75">
+                    Tell us what kind of driver you are looking for.
+                    Your requirement will be visible to suitable drivers.
+                </p>
+
+            </div>
+
+            <div class="col-md-4 text-center">
+
+                <div style="font-size: 90px;">
+                    👨‍🔧
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- FORM CARD -->
+    <!-- ================================================= -->
+
+    <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
+
+        <div class="card-header text-white py-4"
+             style="background: #111827;">
+
+            <h3 class="mb-0 fw-bold">
+                📋 Driver Requirement
+            </h3>
+
+            <small class="text-light">
+                Provide accurate information so drivers can understand
+                your requirement.
+            </small>
+
+        </div>
+
+
+        <div class="card-body p-5">
+
+            <form method="POST">
+
+                {% csrf_token %}
+
+
+                <!-- ========================================= -->
+                <!-- FORM ERRORS -->
+                <!-- ========================================= -->
+
+                {% if form.non_field_errors %}
+
+                    <div class="alert alert-danger">
+
+                        {{ form.non_field_errors }}
+
+                    </div>
+
+                {% endif %}
+
+
+                <div class="row g-4">
+
+
+                    <!-- ===================================== -->
+                    <!-- TITLE -->
+                    <!-- ===================================== -->
+
+                    <div class="col-md-12">
+
+                        <label class="form-label fw-semibold">
+
+                            {{ form.title.label }}
+
+                        </label>
+
+                        {{ form.title }}
+
+                        {% if form.title.help_text %}
+
+                            <small class="text-muted d-block mt-1">
+
+                                {{ form.title.help_text }}
+
+                            </small>
+
+                        {% endif %}
+
+                        {% if form.title.errors %}
+
+                            <div class="text-danger small mt-1">
+
+                                {{ form.title.errors }}
+
+                            </div>
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <!-- ===================================== -->
+                    <!-- VEHICLE TYPE -->
+                    <!-- ===================================== -->
+
+                    <div class="col-md-6">
+
+                        <label class="form-label fw-semibold">
+
+                            {{ form.vehicle_type.label }}
+
+                        </label>
+
+                        {{ form.vehicle_type }}
+
+                        {% if form.vehicle_type.errors %}
+
+                            <div class="text-danger small mt-1">
+
+                                {{ form.vehicle_type.errors }}
+
+                            </div>
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <!-- ===================================== -->
+                    <!-- NUMBER OF DRIVERS -->
+                    <!-- ===================================== -->
+
+                    <div class="col-md-6">
+
+                        <label class="form-label fw-semibold">
+
+                            {{ form.number_of_drivers.label }}
+
+                        </label>
+
+                        {{ form.number_of_drivers }}
+
+                        {% if form.number_of_drivers.help_text %}
+
+                            <small class="text-muted d-block mt-1">
+
+                                {{ form.number_of_drivers.help_text }}
+
+                            </small>
+
+                        {% endif %}
+
+                        {% if form.number_of_drivers.errors %}
+
+                            <div class="text-danger small mt-1">
+
+                                {{ form.number_of_drivers.errors }}
+
+                            </div>
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <!-- ===================================== -->
+                    <!-- CITY -->
+                    <!-- ===================================== -->
+
+                    <div class="col-md-6">
+
+                        <label class="form-label fw-semibold">
+
+                            {{ form.city.label }}
+
+                        </label>
+
+                        {{ form.city }}
+
+                        {% if form.city.errors %}
+
+                            <div class="text-danger small mt-1">
+
+                                {{ form.city.errors }}
+
+                            </div>
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <!-- ===================================== -->
+                    <!-- STATE -->
+                    <!-- ===================================== -->
+
+                    <div class="col-md-6">
+
+                        <label class="form-label fw-semibold">
+
+                            {{ form.state.label }}
+
+                        </label>
+
+                        {{ form.state }}
+
+                        {% if form.state.errors %}
+
+                            <div class="text-danger small mt-1">
+
+                                {{ form.state.errors }}
+
+                            </div>
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <!-- ===================================== -->
+                    <!-- EXPERIENCE -->
+                    <!-- ===================================== -->
+
+                    <div class="col-md-6">
+
+                        <label class="form-label fw-semibold">
+
+                            {{ form.experience_required.label }}
+
+                        </label>
+
+                        {{ form.experience_required }}
+
+                        {% if form.experience_required.help_text %}
+
+                            <small class="text-muted d-block mt-1">
+
+                                {{ form.experience_required.help_text }}
+
+                            </small>
+
+                        {% endif %}
+
+                        {% if form.experience_required.errors %}
+
+                            <div class="text-danger small mt-1">
+
+                                {{ form.experience_required.errors }}
+
+                            </div>
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <!-- ===================================== -->
+                    <!-- LICENSE -->
+                    <!-- ===================================== -->
+
+                    <div class="col-md-6">
+
+                        <label class="form-label fw-semibold">
+
+                            {{ form.license_type.label }}
+
+                        </label>
+
+                        {{ form.license_type }}
+
+                        {% if form.license_type.errors %}
+
+                            <div class="text-danger small mt-1">
+
+                                {{ form.license_type.errors }}
+
+                            </div>
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <!-- ===================================== -->
+                    <!-- SALARY -->
+                    <!-- ===================================== -->
+
+                    <div class="col-md-6">
+
+                        <label class="form-label fw-semibold">
+
+                            {{ form.salary.label }}
+
+                        </label>
+
+                        {{ form.salary }}
+
+                        {% if form.salary.help_text %}
+
+                            <small class="text-muted d-block mt-1">
+
+                                {{ form.salary.help_text }}
+
+                            </small>
+
+                        {% endif %}
+
+                        {% if form.salary.errors %}
+
+                            <div class="text-danger small mt-1">
+
+                                {{ form.salary.errors }}
+
+                            </div>
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <!-- ===================================== -->
+                    <!-- DESCRIPTION -->
+                    <!-- ===================================== -->
+
+                    <div class="col-md-12">
+
+                        <label class="form-label fw-semibold">
+
+                            {{ form.description.label }}
+
+                        </label>
+
+                        {{ form.description }}
+
+                        {% if form.description.help_text %}
+
+                            <small class="text-muted d-block mt-1">
+
+                                {{ form.description.help_text }}
+
+                            </small>
+
+                        {% endif %}
+
+                        {% if form.description.errors %}
+
+                            <div class="text-danger small mt-1">
+
+                                {{ form.description.errors }}
+
+                            </div>
+
+                        {% endif %}
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- BUTTONS -->
+                <!-- ================================================= -->
+
+                <div class="mt-5 d-flex justify-content-between">
+
+                    <a href="{% url 'owner_dashboard' %}"
+                       class="btn btn-outline-dark px-4 py-2 rounded-pill">
+
+                        ← Back to Dashboard
+
+                    </a>
+
+
+                    <button type="submit"
+                            class="btn px-5 py-2 rounded-pill text-white fw-semibold"
+                            style="background: linear-gradient(135deg, #2563eb, #1d4ed8);">
+
+                        Post Requirement ✓
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- INFORMATION CARDS -->
+    <!-- ================================================= -->
+
+    <div class="row mt-5 g-4">
+
+
+        <div class="col-md-4">
+
+            <div class="card border-0 shadow-sm rounded-4 text-center p-4 h-100">
+
+                <div class="fs-1 mb-3">
+                    🚚
+                </div>
+
+                <h5 class="fw-bold">
+                    Choose Vehicle
+                </h5>
+
+                <p class="text-muted mb-0">
+                    Tell drivers which type of vehicle they will operate.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-md-4">
+
+            <div class="card border-0 shadow-sm rounded-4 text-center p-4 h-100">
+
+                <div class="fs-1 mb-3">
+                    👨‍🔧
+                </div>
+
+                <h5 class="fw-bold">
+                    Set Requirements
+                </h5>
+
+                <p class="text-muted mb-0">
+                    Specify experience and license requirements.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-md-4">
+
+            <div class="card border-0 shadow-sm rounded-4 text-center p-4 h-100">
+
+                <div class="fs-1 mb-3">
+                    🤝
+                </div>
+
+                <h5 class="fw-bold">
+                    Find Drivers
+                </h5>
+
+                <p class="text-muted mb-0">
+                    Suitable drivers can discover your requirement.
+                </p>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+{% endblock %}

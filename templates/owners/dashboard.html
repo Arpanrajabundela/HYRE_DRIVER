@@ -1,0 +1,1187 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<style>
+
+    .dashboard-page {
+        background: #f5f7fb;
+        min-height: 100vh;
+    }
+
+    /* HERO */
+
+    .dashboard-hero {
+        background: linear-gradient(
+            135deg,
+            #0f172a,
+            #1e3a8a,
+            #2563eb
+        );
+
+        border-radius: 28px;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .dashboard-hero::before {
+        content: "";
+        position: absolute;
+
+        width: 320px;
+        height: 320px;
+
+        border-radius: 50%;
+
+        background: rgba(255,255,255,0.06);
+
+        right: -100px;
+        top: -150px;
+    }
+
+    .dashboard-hero::after {
+        content: "";
+
+        position: absolute;
+
+        width: 200px;
+        height: 200px;
+
+        border-radius: 50%;
+
+        background: rgba(255,255,255,0.04);
+
+        right: 250px;
+        bottom: -140px;
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 2;
+    }
+
+    .hero-truck {
+        font-size: 95px;
+    }
+
+    /* STAT CARDS */
+
+    .stat-card {
+        border: none;
+        border-radius: 22px;
+
+        background: white;
+
+        box-shadow:
+            0 8px 25px rgba(15, 23, 42, 0.07);
+
+        transition: 0.25s ease;
+    }
+
+    .stat-card:hover {
+        transform: translateY(-5px);
+
+        box-shadow:
+            0 15px 35px rgba(15, 23, 42, 0.12);
+    }
+
+    .stat-icon {
+        width: 52px;
+        height: 52px;
+
+        border-radius: 15px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        font-size: 25px;
+
+        background: #eff6ff;
+    }
+
+    /* PROFILE CARD */
+
+    .profile-card {
+        border: none;
+        border-radius: 24px;
+
+        background: white;
+
+        box-shadow:
+            0 10px 30px rgba(15, 23, 42, 0.07);
+    }
+
+    .profile-image {
+        width: 90px;
+        height: 90px;
+
+        border-radius: 50%;
+
+        object-fit: cover;
+
+        border: 4px solid #dbeafe;
+    }
+
+    .profile-placeholder {
+        width: 90px;
+        height: 90px;
+
+        border-radius: 50%;
+
+        background: #dbeafe;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        font-size: 42px;
+    }
+
+    .profile-row {
+        padding: 13px 0;
+
+        border-bottom: 1px solid #eef2f7;
+    }
+
+    .profile-row:last-child {
+        border-bottom: none;
+    }
+
+    /* PROGRESS */
+
+    .progress {
+        height: 10px;
+
+        border-radius: 20px;
+
+        background: #e2e8f0;
+    }
+
+    .progress-bar {
+        border-radius: 20px;
+
+        background: linear-gradient(
+            90deg,
+            #2563eb,
+            #4f46e5
+        );
+    }
+
+    /* ACTION CARDS */
+
+    .action-card {
+        border: none;
+
+        border-radius: 22px;
+
+        background: white;
+
+        box-shadow:
+            0 8px 25px rgba(15, 23, 42, 0.06);
+
+        transition: 0.25s ease;
+
+        height: 100%;
+
+        text-decoration: none;
+
+        color: inherit;
+    }
+
+    .action-card:hover {
+        transform: translateY(-6px);
+
+        box-shadow:
+            0 15px 35px rgba(15, 23, 42, 0.12);
+
+        color: inherit;
+    }
+
+    .action-icon {
+        width: 65px;
+        height: 65px;
+
+        border-radius: 18px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        font-size: 32px;
+
+        background: #eff6ff;
+
+        margin-bottom: 18px;
+    }
+
+    /* SUBSCRIPTION */
+
+    .subscription-card {
+        background: linear-gradient(
+            135deg,
+            #111827,
+            #1e293b
+        );
+
+        color: white;
+
+        border-radius: 24px;
+
+        overflow: hidden;
+
+        position: relative;
+    }
+
+    .subscription-card::after {
+        content: "💳";
+
+        position: absolute;
+
+        font-size: 100px;
+
+        right: 25px;
+        bottom: -25px;
+
+        opacity: 0.08;
+    }
+
+</style>
+
+
+<div class="dashboard-page py-5">
+
+    <div class="container">
+
+
+        <!-- ========================= -->
+        <!-- HERO -->
+        <!-- ========================= -->
+
+        <div class="dashboard-hero p-4 p-md-5 mb-5">
+
+            <div class="hero-content">
+
+                <div class="row align-items-center">
+
+                    <div class="col-lg-8">
+
+                        <span class="badge bg-light text-primary rounded-pill px-3 py-2 mb-3">
+
+                            OWNER DASHBOARD
+
+                        </span>
+
+
+                        <h1 class="text-white fw-bold display-6">
+
+                            Welcome,
+                            {{ request.user.full_name }}
+                            👋
+
+                        </h1>
+
+
+                        <p class="text-white opacity-75 fs-5 mt-3">
+
+                            Manage your business, vehicles and driver activities
+                            from one place.
+
+                        </p>
+
+
+                        <a href="{% url 'edit_owner_profile' %}"
+                           class="btn btn-light px-4 py-2 mt-3 rounded-pill fw-semibold">
+
+                            ✏️ Manage Profile
+
+                        </a>
+
+                    </div>
+
+
+                    <div class="col-lg-4 text-center">
+
+                        <div class="hero-truck">
+                            🚛
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ========================= -->
+        <!-- STATISTICS -->
+        <!-- ========================= -->
+
+        <div class="row g-4 mb-5">
+
+
+            <!-- Vehicles -->
+
+            <div class="col-md-4">
+
+                <div class="stat-card p-4 h-100">
+
+                    <div class="d-flex align-items-center">
+
+                        <div class="stat-icon me-3">
+                            🚚
+                        </div>
+
+                        <div>
+
+                            <small class="text-muted">
+                                Vehicles
+                            </small>
+
+                            <h2 class="fw-bold mb-0">
+
+                                {{ profile.number_of_vehicles }}
+
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+                    <p class="text-muted mt-3 mb-0">
+
+                        Registered vehicles
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Profile -->
+
+            <div class="col-md-4">
+
+                <div class="stat-card p-4 h-100">
+
+                    <div class="d-flex align-items-center">
+
+                        <div class="stat-icon me-3">
+                            👤
+                        </div>
+
+                        <div>
+
+                            <small class="text-muted">
+                                Profile
+                            </small>
+
+
+                            {% if profile.is_profile_completed %}
+
+                                <h2 class="fw-bold text-success mb-0">
+                                    Complete ✓
+                                </h2>
+
+                            {% else %}
+
+                                <h2 class="fw-bold text-warning mb-0">
+                                    Incomplete
+                                </h2>
+
+                            {% endif %}
+
+                        </div>
+
+                    </div>
+
+
+                    <p class="text-muted mt-3 mb-0">
+
+                        Keep your information updated
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Subscription -->
+
+            <div class="col-md-4">
+
+                <div class="stat-card p-4 h-100">
+
+                    <div class="d-flex align-items-center">
+
+                        <div class="stat-icon me-3">
+                            💳
+                        </div>
+
+                        <div>
+
+                            <small class="text-muted">
+                                Subscription
+                            </small>
+
+                            <h2 class="fw-bold mb-0">
+                                Free
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+
+                    <p class="text-muted mt-3 mb-0">
+
+                        Upgrade when you're ready
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- ========================= -->
+        <!-- PROFILE -->
+        <!-- ========================= -->
+
+        <div class="profile-card p-4 p-md-5 mb-5">
+
+
+            <div class="row align-items-center mb-4">
+
+
+                <div class="col-md-8">
+
+                    <div class="d-flex align-items-center">
+
+
+                        {% if profile.profile_picture %}
+
+                            <img src="{{ profile.profile_picture.url }}"
+                                 class="profile-image me-3"
+                                 alt="Owner Profile">
+
+                        {% else %}
+
+                            <div class="profile-placeholder me-3">
+                                👤
+                            </div>
+
+                        {% endif %}
+
+
+                        <div>
+
+                            <h3 class="fw-bold mb-1">
+
+                                Owner Profile
+
+                            </h3>
+
+
+                            <p class="text-muted mb-0">
+
+                                {{ request.user.email }}
+
+                            </p>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-4 text-md-end mt-3 mt-md-0">
+
+                    <a href="{% url 'edit_owner_profile' %}"
+                       class="btn btn-primary rounded-pill px-4">
+
+                        ✏️ Edit Profile
+
+                    </a>
+
+                </div>
+
+
+            </div>
+
+
+
+            <hr>
+
+
+
+            <!-- Profile Completion -->
+
+            <div class="mt-4 mb-4">
+
+                <div class="d-flex justify-content-between mb-2">
+
+                    <span class="fw-semibold">
+                        Profile Completion
+                    </span>
+
+                    <span class="fw-bold text-primary">
+
+                        {% if profile.is_profile_completed %}
+                            100%
+                        {% else %}
+                            Complete your profile
+                        {% endif %}
+
+                    </span>
+
+                </div>
+
+
+                <div class="progress">
+
+                    <div class="progress-bar"
+                         role="progressbar"
+                         style="width:
+                         {% if profile.is_profile_completed %}
+                             100%
+                         {% else %}
+                             50%
+                         {% endif %};">
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- Profile Information -->
+
+            <div class="row">
+
+
+                <div class="col-md-6">
+
+
+                    <div class="profile-row">
+
+                        <span class="text-muted">
+                            Owner Type
+                        </span>
+
+                        <strong class="float-end">
+
+                            {{ profile.get_owner_type_display }}
+
+                        </strong>
+
+                    </div>
+
+
+                    <div class="profile-row">
+
+                        <span class="text-muted">
+                            Company
+                        </span>
+
+                        <strong class="float-end">
+
+                            {{ profile.company_name|default:"Not Added" }}
+
+                        </strong>
+
+                    </div>
+
+
+                    <div class="profile-row">
+
+                        <span class="text-muted">
+                            Location
+                        </span>
+
+                        <strong class="float-end">
+
+                            {% if profile.city or profile.state %}
+
+                                {{ profile.city|default:"" }}
+
+                                {% if profile.city and profile.state %}
+                                    ,
+                                {% endif %}
+
+                                {{ profile.state|default:"" }}
+
+                            {% else %}
+
+                                Not Added
+
+                            {% endif %}
+
+                        </strong>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <div class="col-md-6">
+
+
+                    <div class="profile-row">
+
+                        <span class="text-muted">
+                            Vehicles
+                        </span>
+
+                        <strong class="float-end">
+
+                            {{ profile.number_of_vehicles }}
+
+                        </strong>
+
+                    </div>
+
+
+                    <div class="profile-row">
+
+                        <span class="text-muted">
+                            Verification
+                        </span>
+
+
+                        {% if profile.is_verified %}
+
+                            <span class="badge bg-success float-end">
+                                ✓ Verified
+                            </span>
+
+                        {% else %}
+
+                            <span class="badge bg-warning text-dark float-end">
+                                Pending
+                            </span>
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <div class="profile-row">
+
+                        <span class="text-muted">
+                            Phone Visibility
+                        </span>
+
+
+                        {% if profile.phone_visible %}
+
+                            <span class="badge bg-success float-end">
+                                Visible
+                            </span>
+
+                        {% else %}
+
+                            <span class="badge bg-secondary float-end">
+                                Hidden
+                            </span>
+
+                        {% endif %}
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- ========================================================= -->
+        <!-- MY DRIVER REQUIREMENTS - ADDED SECTION -->
+        <!-- ========================================================= -->
+
+        <section class="mb-5">
+
+            <div class="d-flex justify-content-between align-items-center mb-4">
+
+                <div>
+
+                    <h3 class="fw-bold mb-1">
+                        My Driver Requirements
+                    </h3>
+
+                    <p class="text-muted mb-0">
+                        Manage the driver requirements you have posted.
+                    </p>
+
+                </div>
+
+
+                <a
+                    href="{% url 'post_requirement' %}"
+                    class="btn btn-primary rounded-pill px-4"
+                >
+
+                    ➕ Post Requirement
+
+                </a>
+
+            </div>
+
+
+            {% if requirements %}
+
+
+                <div class="row g-4">
+
+
+                    {% for requirement in requirements %}
+
+
+                        <div class="col-lg-6">
+
+
+                            <div class="card border-0 shadow-sm rounded-4 h-100">
+
+
+                                <div class="card-body p-4">
+
+
+                                    <!-- TITLE + STATUS -->
+
+                                    <div class="d-flex justify-content-between align-items-start gap-3">
+
+                                        <div>
+
+                                            <h4 class="fw-bold mb-1">
+
+                                                {{ requirement.title }}
+
+                                            </h4>
+
+
+                                            <small class="text-muted">
+
+                                                Posted
+                                                {{ requirement.created_at|date:"d M Y" }}
+
+                                            </small>
+
+                                        </div>
+
+
+                                        {% if requirement.status == "ACTIVE" %}
+
+                                            <span class="badge bg-success rounded-pill px-3 py-2">
+
+                                                ● Active
+
+                                            </span>
+
+                                        {% else %}
+
+                                            <span class="badge bg-secondary rounded-pill px-3 py-2">
+
+                                                ● Closed
+
+                                            </span>
+
+                                        {% endif %}
+
+                                    </div>
+
+
+                                    <hr>
+
+
+                                    <!-- VEHICLE -->
+
+                                    <p class="mb-2">
+
+                                        🚚
+
+                                        <strong>
+                                            Vehicle:
+                                        </strong>
+
+                                        {{ requirement.get_vehicle_type_display }}
+
+                                    </p>
+
+
+                                    <!-- LOCATION -->
+
+                                    <p class="mb-2">
+
+                                        📍
+
+                                        <strong>
+                                            Location:
+                                        </strong>
+
+                                        {{ requirement.city }},
+                                        {{ requirement.state }}
+
+                                    </p>
+
+
+                                    <!-- DRIVERS NEEDED -->
+
+                                    <p class="mb-2">
+
+                                        👨‍🔧
+
+                                        <strong>
+                                            Drivers Needed:
+                                        </strong>
+
+                                        {{ requirement.number_of_drivers }}
+
+                                    </p>
+
+
+                                    <!-- EXPERIENCE -->
+
+                                    <p class="mb-2">
+
+                                        💼
+
+                                        <strong>
+                                            Experience:
+                                        </strong>
+
+                                        {{ requirement.experience_required }}
+                                        years
+
+                                    </p>
+
+
+                                    <!-- LICENSE -->
+
+                                    <p class="mb-2">
+
+                                        🪪
+
+                                        <strong>
+                                            License:
+                                        </strong>
+
+                                        {{ requirement.get_license_type_display }}
+
+                                    </p>
+
+
+                                    <!-- SALARY -->
+
+                                    {% if requirement.salary %}
+
+                                        <p class="mb-2">
+
+                                            💰
+
+                                            <strong>
+                                                Salary:
+                                            </strong>
+
+                                            ₹{{ requirement.salary }}
+
+                                            <span class="text-muted">
+                                                / month
+                                            </span>
+
+                                        </p>
+
+                                    {% endif %}
+
+
+                                    <!-- APPLICATION COUNT -->
+
+                                    <div class="bg-light rounded-3 p-3 mt-4">
+
+                                        <div class="d-flex justify-content-between align-items-center">
+
+                                            <strong>
+                                                👥 Applications Received
+                                            </strong>
+
+
+                                            <span class="badge bg-primary rounded-pill px-3 py-2">
+
+                                                {{ requirement.applications.count }}
+
+                                            </span>
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <!-- VIEW APPLICATIONS -->
+
+                                    <div class="mt-4">
+
+                                        <a
+                                            href="{% url 'view_applications' requirement.id %}"
+                                            class="btn btn-primary rounded-pill px-4"
+                                        >
+
+                                            👥 View Applications →
+
+                                        </a>
+
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                    {% endfor %}
+
+
+                </div>
+
+
+            {% else %}
+
+
+                <!-- NO REQUIREMENTS -->
+
+                <div class="card border-0 shadow-sm rounded-4">
+
+                    <div class="card-body text-center py-5">
+
+
+                        <div style="font-size:60px;">
+                            🚛
+                        </div>
+
+
+                        <h4 class="fw-bold mt-3">
+
+                            No Driver Requirements Yet
+
+                        </h4>
+
+
+                        <p class="text-muted">
+
+                            You haven't posted any driver requirements yet.
+
+                        </p>
+
+
+                        <a
+                            href="{% url 'post_requirement' %}"
+                            class="btn btn-primary rounded-pill px-4"
+                        >
+
+                            ➕ Post Requirement
+
+                        </a>
+
+
+                    </div>
+
+                </div>
+
+
+            {% endif %}
+
+        </section>
+
+
+
+        <!-- ========================= -->
+        <!-- QUICK ACTIONS -->
+        <!-- ========================= -->
+
+        <div class="d-flex justify-content-between align-items-center mb-4">
+
+            <div>
+
+                <h3 class="fw-bold mb-1">
+                    Quick Actions
+                </h3>
+
+                <p class="text-muted mb-0">
+                    Quickly access your most important tools.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="row g-4 mb-5">
+
+
+            <!-- Find Drivers -->
+
+            <div class="col-md-4">
+
+                <a href="{% url 'driver_list' %}"
+                   class="action-card d-block p-4">
+
+                    <div class="action-icon">
+                        🔎
+                    </div>
+
+                    <h5 class="fw-bold">
+                        Find Drivers
+                    </h5>
+
+                    <p class="text-muted mb-0">
+
+                        Search and discover available drivers.
+
+                    </p>
+
+                </a>
+
+            </div>
+
+
+
+            <!-- Bookings -->
+
+            <div class="col-md-4">
+
+                <a href="#"
+                   class="action-card d-block p-4">
+
+                    <div class="action-icon">
+                        📋
+                    </div>
+
+                    <h5 class="fw-bold">
+                        Bookings
+                    </h5>
+
+                    <p class="text-muted mb-0">
+
+                        Manage your driver requests and bookings.
+
+                    </p>
+
+                </a>
+
+            </div>
+
+
+
+            <!-- Saved -->
+
+            <div class="col-md-4">
+
+                <a href="#"
+                   class="action-card d-block p-4">
+
+                    <div class="action-icon">
+                        ⭐
+                    </div>
+
+                    <h5 class="fw-bold">
+                        Saved Drivers
+                    </h5>
+
+                    <p class="text-muted mb-0">
+
+                        View your favorite drivers.
+
+                    </p>
+
+                </a>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- ========================= -->
+        <!-- SUBSCRIPTION -->
+        <!-- ========================= -->
+
+        <div class="subscription-card p-4 p-md-5 mb-4">
+
+
+            <div class="row align-items-center">
+
+                <div class="col-md-8">
+
+                    <span class="badge bg-light text-dark rounded-pill px-3 py-2 mb-3">
+
+                        CURRENT PLAN
+
+                    </span>
+
+
+                    <h3 class="fw-bold">
+
+                        Free Plan
+
+                    </h3>
+
+
+                    <p class="opacity-75">
+
+                        Upgrade your plan when you're ready to connect
+                        with more drivers.
+
+                    </p>
+
+                </div>
+
+
+                <div class="col-md-4 text-md-end mt-3 mt-md-0">
+
+                    <a href="{% url 'pricing' %}"
+                       class="btn btn-light rounded-pill px-4 fw-semibold">
+
+                        View Plans →
+
+                    </a>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+{% endblock %}

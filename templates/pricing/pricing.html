@@ -1,0 +1,838 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Pricing
+{% endblock %}
+
+{% block content %}
+
+<!-- Hero -->
+
+<section class="pricing-hero">
+
+    <div class="container text-center">
+
+        <span class="pricing-badge">
+
+            <i class="bi bi-stars"></i>
+
+            Transparent Pricing
+
+        </span>
+
+        <h1 class="pricing-title mt-4">
+
+            Choose The Perfect Plan
+
+        </h1>
+
+        <p class="pricing-text">
+
+            Whether you're a Driver looking for better opportunities
+            or a Vehicle Owner hiring professionals,
+            we've got a plan for you.
+
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- Pricing Toggle -->
+
+<section class="pricing-toggle-section py-5">
+
+    <div class="container">
+
+        <div class="pricing-toggle">
+
+            <button class="toggle-btn active"
+                    id="driverBtn">
+
+                👨‍✈️ Driver
+
+            </button>
+
+            <button class="toggle-btn"
+                    id="ownerBtn">
+
+                🚛 Vehicle Owner
+
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- Driver Plans -->
+
+<section class="pricing-plans pb-5" id="driverPlans">
+
+<div class="container">
+
+<div class="row g-4">
+
+<div class="col-lg-4">
+
+<div class="pricing-card">
+
+<div class="plan-title">Basic</div>
+
+<h2 class="price">₹0</h2>
+
+<p class="plan-text">Perfect for new drivers</p>
+
+<hr>
+
+<ul class="plan-list">
+
+<li>✔ Create Profile</li>
+
+<li>✔ Apply to 5 Jobs</li>
+
+<li>✔ Basic Support</li>
+
+<li>✔ Profile Visibility</li>
+
+</ul>
+
+<a href="#" class="btn btn-outline-primary w-100">
+
+Get Started
+
+</a>
+
+</div>
+
+</div>
+
+<div class="col-lg-4">
+
+<div class="pricing-card popular">
+
+<span class="popular-badge">
+
+Most Popular
+
+</span>
+
+<div class="plan-title">
+
+Driver Pro
+
+</div>
+
+<h2 class="price">
+
+₹199
+
+<small>/month</small>
+
+</h2>
+
+<p class="plan-text">
+
+For active drivers
+
+</p>
+
+<hr>
+
+<ul class="plan-list">
+
+<li>✔ Unlimited Applications</li>
+
+<li>✔ Verified Badge</li>
+
+<li>✔ Priority Search Ranking</li>
+
+<li>✔ Resume Builder</li>
+
+<li>✔ Email Notifications</li>
+
+<li>✔ Priority Support</li>
+
+</ul>
+
+<a href="#" class="btn btn-primary w-100">
+
+Choose Plan
+
+</a>
+
+</div>
+
+</div>
+
+<div class="col-lg-4">
+
+<div class="pricing-card">
+
+<div class="plan-title">
+
+Premium
+
+</div>
+
+<h2 class="price">
+
+₹399
+
+<small>/month</small>
+
+</h2>
+
+<p class="plan-text">
+
+Best for professionals
+
+</p>
+
+<hr>
+
+<ul class="plan-list">
+
+<li>✔ Everything in Pro</li>
+
+<li>✔ Featured Profile</li>
+
+<li>✔ Direct Recruiter Chat</li>
+
+<li>✔ AI Resume (Coming Soon)</li>
+
+<li>✔ Interview Scheduler</li>
+
+</ul>
+
+<a href="#" class="btn btn-outline-primary w-100">
+
+Go Premium
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+<section class="pricing-plans pb-5 d-none"
+id="ownerPlans">
+
+<div class="container">
+
+<div class="row g-4">
+
+<div class="col-lg-4">
+
+<div class="pricing-card">
+
+<div class="plan-title">
+
+Starter
+
+</div>
+
+<h2 class="price">
+
+₹499
+
+<small>/month</small>
+
+</h2>
+
+<p class="plan-text">
+
+Small businesses
+
+</p>
+
+<hr>
+
+<ul class="plan-list">
+
+<li>✔ Contact 20 Drivers</li>
+
+<li>✔ Save Drivers</li>
+
+<li>✔ Basic Support</li>
+
+</ul>
+
+<a href="#"
+class="btn btn-outline-primary w-100">
+
+Choose
+
+</a>
+
+</div>
+
+</div>
+
+<div class="col-lg-4">
+
+<div class="pricing-card popular">
+
+<span class="popular-badge">
+
+Best Value
+
+</span>
+
+<div class="plan-title">
+
+Business
+
+</div>
+
+<h2 class="price">
+
+₹999
+
+<small>/month</small>
+
+</h2>
+
+<p class="plan-text">
+
+Growing companies
+
+</p>
+
+<hr>
+
+<ul class="plan-list">
+
+<li>✔ Unlimited Driver Contact</li>
+
+<li>✔ Unlimited Requirements</li>
+
+<li>✔ Verified Company Badge</li>
+
+<li>✔ Priority Listing</li>
+
+<li>✔ Premium Support</li>
+
+</ul>
+
+<a href="#"
+class="btn btn-primary w-100">
+
+Choose
+
+</a>
+
+</div>
+
+</div>
+
+<div class="col-lg-4">
+
+<div class="pricing-card">
+
+<div class="plan-title">
+
+Enterprise
+
+</div>
+
+<h2 class="price">
+
+Custom
+
+</h2>
+
+<p class="plan-text">
+
+Large organizations
+
+</p>
+
+<hr>
+
+<ul class="plan-list">
+
+<li>✔ Everything Included</li>
+
+<li>✔ Dedicated Manager</li>
+
+<li>✔ API Access</li>
+
+<li>✔ Analytics Dashboard</li>
+
+<li>✔ Multi User Access</li>
+
+</ul>
+
+<a href="#"
+class="btn btn-outline-primary w-100">
+
+Contact Sales
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- Feature Comparison -->
+
+<section class="comparison-section py-5">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <span class="section-subtitle">
+                COMPARE PLANS
+            </span>
+
+            <h2 class="section-title mt-3">
+                Compare Features
+            </h2>
+
+            <p class="section-text">
+                Choose the plan that best fits your needs.
+            </p>
+
+        </div>
+
+        <div class="table-responsive">
+
+            <table class="table comparison-table align-middle">
+
+                <thead>
+
+                    <tr>
+
+                        <th>Features</th>
+
+                        <th>Basic</th>
+
+                        <th>Pro</th>
+
+                        <th>Premium</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+
+                        <td>Create Profile</td>
+
+                        <td>✅</td>
+
+                        <td>✅</td>
+
+                        <td>✅</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>Unlimited Job Applications</td>
+
+                        <td>❌</td>
+
+                        <td>✅</td>
+
+                        <td>✅</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>Verified Badge</td>
+
+                        <td>❌</td>
+
+                        <td>✅</td>
+
+                        <td>✅</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>Featured Profile</td>
+
+                        <td>❌</td>
+
+                        <td>❌</td>
+
+                        <td>✅</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>Priority Support</td>
+
+                        <td>❌</td>
+
+                        <td>✅</td>
+
+                        <td>✅</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>AI Resume (Future)</td>
+
+                        <td>❌</td>
+
+                        <td>❌</td>
+
+                        <td>✅</td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- Why Upgrade -->
+
+<section class="upgrade-section py-5">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <span class="section-subtitle">
+                WHY UPGRADE?
+            </span>
+
+            <h2 class="section-title mt-3">
+                Unlock More Opportunities
+            </h2>
+
+            <p class="section-text">
+                Premium plans help both Drivers and Vehicle Owners achieve better results faster.
+            </p>
+
+        </div>
+
+        <div class="row g-4">
+
+            <div class="col-lg-3 col-md-6">
+
+                <div class="upgrade-card">
+
+                    <div class="upgrade-icon">
+                        <i class="bi bi-lightning-charge-fill"></i>
+                    </div>
+
+                    <h4>Faster Hiring</h4>
+
+                    <p>
+                        Get connected with employers or drivers much faster than free users.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+
+                <div class="upgrade-card">
+
+                    <div class="upgrade-icon">
+                        <i class="bi bi-patch-check-fill"></i>
+                    </div>
+
+                    <h4>Verified Profile</h4>
+
+                    <p>
+                        Build trust with a verified badge and stand out from the crowd.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+
+                <div class="upgrade-card">
+
+                    <div class="upgrade-icon">
+                        <i class="bi bi-graph-up-arrow"></i>
+                    </div>
+
+                    <h4>Higher Visibility</h4>
+
+                    <p>
+                        Premium users appear higher in search results and attract more attention.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+
+                <div class="upgrade-card">
+
+                    <div class="upgrade-icon">
+                        <i class="bi bi-headset"></i>
+                    </div>
+
+                    <h4>Priority Support</h4>
+
+                    <p>
+                        Receive faster assistance whenever you need help with your account.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- Pricing FAQ -->
+
+<section class="pricing-faq py-5">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <span class="section-subtitle">
+                FAQ
+            </span>
+
+            <h2 class="section-title mt-3">
+                Frequently Asked Questions
+            </h2>
+
+            <p class="section-text">
+                Everything you need to know about our plans and subscriptions.
+            </p>
+
+        </div>
+
+        <div class="accordion" id="pricingFaq">
+
+            <div class="accordion-item">
+
+                <h2 class="accordion-header">
+
+                    <button class="accordion-button"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#priceFaq1">
+
+                        Can I change my plan later?
+
+                    </button>
+
+                </h2>
+
+                <div id="priceFaq1"
+                     class="accordion-collapse collapse show"
+                     data-bs-parent="#pricingFaq">
+
+                    <div class="accordion-body">
+
+                        Yes. You can upgrade or downgrade your subscription at any time.
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="accordion-item">
+
+                <h2 class="accordion-header">
+
+                    <button class="accordion-button collapsed"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#priceFaq2">
+
+                        Can I cancel my subscription anytime?
+
+                    </button>
+
+                </h2>
+
+                <div id="priceFaq2"
+                     class="accordion-collapse collapse"
+                     data-bs-parent="#pricingFaq">
+
+                    <div class="accordion-body">
+
+                        Absolutely. There are no long-term contracts. You can cancel whenever you like.
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="accordion-item">
+
+                <h2 class="accordion-header">
+
+                    <button class="accordion-button collapsed"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#priceFaq3">
+
+                        Are my payments secure?
+
+                    </button>
+
+                </h2>
+
+                <div id="priceFaq3"
+                     class="accordion-collapse collapse"
+                     data-bs-parent="#pricingFaq">
+
+                    <div class="accordion-body">
+
+                        Yes. We use trusted payment gateways and encrypted transactions to keep your information secure.
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="accordion-item">
+
+                <h2 class="accordion-header">
+
+                    <button class="accordion-button collapsed"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#priceFaq4">
+
+                        Which plan is best for me?
+
+                    </button>
+
+                </h2>
+
+                <div id="priceFaq4"
+                     class="accordion-collapse collapse"
+                     data-bs-parent="#pricingFaq">
+
+                    <div class="accordion-body">
+
+                        Basic plans are ideal for new users. Professional plans are designed for active drivers and growing businesses, while Enterprise is best for large organizations.
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="pricing-cta py-5">
+
+    <div class="container">
+
+        <div class="pricing-cta-box text-center">
+
+            <h2 class="mb-4">
+
+                Ready to Get Started?
+
+            </h2>
+
+            <p class="mb-4">
+
+                Join thousands of drivers and vehicle owners using Hire Driver to find opportunities and build successful partnerships.
+
+            </p>
+
+            <a href="#" class="btn btn-light btn-lg me-3">
+
+                Create Free Account
+
+            </a>
+
+            <a href="{% url 'contact' %}" class="btn btn-outline-light btn-lg">
+
+                Contact Sales
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<script>
+
+const driverBtn=document.getElementById("driverBtn");
+
+const ownerBtn=document.getElementById("ownerBtn");
+
+const driverPlans=document.getElementById("driverPlans");
+
+const ownerPlans=document.getElementById("ownerPlans");
+
+driverBtn.onclick=function(){
+
+driverBtn.classList.add("active");
+
+ownerBtn.classList.remove("active");
+
+driverPlans.classList.remove("d-none");
+
+ownerPlans.classList.add("d-none");
+
+}
+
+ownerBtn.onclick=function(){
+
+ownerBtn.classList.add("active");
+
+driverBtn.classList.remove("active");
+
+ownerPlans.classList.remove("d-none");
+
+driverPlans.classList.add("d-none");
+
+}
+
+</script>
+{% endblock %}

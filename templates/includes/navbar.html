@@ -1,0 +1,173 @@
+<nav class="navbar navbar-expand-lg bg-white shadow-sm"> 
+ 
+    <div class="container"> 
+ 
+        <!-- Logo --> 
+        <a class="navbar-brand fw-bold fs-3" href="{% url 'home' %}"> 
+            🚛 Hire Driver 
+        </a> 
+ 
+ 
+        <!-- Mobile Toggle --> 
+        <button class="navbar-toggler" 
+                type="button" 
+                data-bs-toggle="collapse" 
+                data-bs-target="#navbar" 
+                aria-controls="navbar" 
+                aria-expanded="false" 
+                aria-label="Toggle navigation"> 
+ 
+            <span class="navbar-toggler-icon"></span> 
+ 
+        </button> 
+ 
+ 
+        <div class="collapse navbar-collapse" id="navbar"> 
+ 
+ 
+            <!-- Center Menu --> 
+            <ul class="navbar-nav mx-auto"> 
+ 
+                <li class="nav-item"> 
+ 
+                    <a class="nav-link active" 
+                       href="{% url 'home' %}"> 
+                        Home 
+                    </a> 
+ 
+                </li> 
+ 
+ 
+                <li class="nav-item"> 
+ 
+                    <a class="nav-link" 
+                       href="{% url 'driver_list' %}"> 
+                        Find Drivers 
+                    </a> 
+ 
+                </li> 
+ 
+ 
+                <li class="nav-item"> 
+ 
+                    <a class="nav-link" 
+                       href="{% url 'vehicle_owner' %}"> 
+                        Vehicle Owners 
+                    </a> 
+ 
+                </li> 
+ 
+ 
+                <!-- <li class="nav-item"> 
+ 
+                    <a class="nav-link" 
+                       href="{% url 'pricing' %}"> 
+                        Pricing 
+                    </a> 
+ 
+                </li>--> 
+ 
+ 
+                <li class="nav-item"> 
+ 
+                    <a class="nav-link" 
+                       href="{% url 'contact' %}"> 
+                        Contact 
+                    </a> 
+ 
+                </li> 
+ 
+ 
+                <li class="nav-item"> 
+ 
+                    <a class="nav-link" 
+                       href="{% url 'about' %}"> 
+                        About 
+                    </a> 
+ 
+                </li> 
+ 
+            </ul> 
+ 
+ 
+            <!-- Right Side --> 
+ 
+            {% if user.is_authenticated %} 
+ 
+                <div class="d-flex align-items-center"> 
+ 
+ 
+                    <span class="me-3 fw-semibold"> 
+                        👋 {{ user.full_name }} 
+                    </span> 
+ 
+ 
+                    <!-- Dashboard --> 
+ 
+                    {% if user.role == "driver" %} 
+ 
+                        <a href="{% url 'driver_dashboard' %}" 
+                           class="btn btn-primary me-2"> 
+ 
+                            Dashboard 
+ 
+                        </a> 
+ 
+ 
+                    {% elif user.role == "owner" %} 
+ 
+                        <a href="{% url 'owner_dashboard' %}" 
+                           class="btn btn-primary me-2"> 
+ 
+                            Dashboard 
+ 
+                        </a> 
+ 
+                    {% endif %} 
+ 
+ 
+                    <!-- Logout --> 
+ 
+                    <a href="{% url 'logout' %}" 
+                       class="btn btn-danger"> 
+ 
+                        Logout 
+ 
+                    </a> 
+ 
+                </div> 
+ 
+ 
+            {% else %} 
+ 
+ 
+                <div class="d-flex align-items-center"> 
+ 
+ 
+                    <a href="{% url 'login' %}" 
+                       class="btn btn-outline-primary me-2"> 
+ 
+                        Login 
+ 
+                    </a> 
+ 
+ 
+                    <a href="{% url 'register' %}" 
+                       class="btn btn-primary"> 
+ 
+                        Register 
+ 
+                    </a> 
+ 
+                </div> 
+ 
+ 
+            {% endif %} 
+ 
+ 
+        </div> 
+ 
+    </div> 
+ 
+</nav>
+```
