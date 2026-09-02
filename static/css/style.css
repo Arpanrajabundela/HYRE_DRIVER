@@ -1,0 +1,1016 @@
+body{
+
+font-family:'Poppins',sans-serif;
+
+background:#f7f9fc;
+
+}
+
+.navbar{
+
+padding:15px 0;
+
+}
+
+.navbar-brand{
+
+color:#0d6efd !important;
+
+}
+
+.nav-link{
+
+font-weight:500;
+
+margin:0 8px;
+
+}
+
+.hero-section{
+
+padding:90px 0;
+
+}
+
+.hero-badge{
+
+background:#dbeafe;
+
+color:#2563eb;
+
+padding:10px 20px;
+
+border-radius:30px;
+
+font-weight:600;
+
+}
+
+.hero-title{
+
+font-size:58px;
+
+font-weight:700;
+
+line-height:1.2;
+
+}
+
+.hero-text{
+
+font-size:18px;
+
+color:#6b7280;
+
+}
+
+.hero-image{
+
+border-radius:20px;
+
+box-shadow:0 20px 50px rgba(0,0,0,.12);
+
+}
+
+.hero-info{
+
+display:flex;
+
+gap:50px;
+
+margin-top:50px;
+
+}
+
+.hero-info h4{
+
+font-weight:700;
+
+color:#0d6efd;
+
+}
+
+.choose-section{
+
+padding:90px 0;
+
+background:white;
+
+}
+
+.choice-card{
+
+padding:40px;
+
+background:#fff;
+
+border-radius:20px;
+
+text-align:center;
+
+box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+transition:.3s;
+
+height:100%;
+
+}
+
+.choice-card:hover{
+
+transform:translateY(-10px);
+
+}
+
+.choice-card h3{
+
+margin-top:20px;
+
+font-weight:700;
+
+}
+
+.choice-card p{
+
+margin:20px 0;
+
+color:#666;
+
+}
+
+.btn{
+
+border-radius:12px;
+
+padding:10px 28px;
+
+font-weight:600;
+
+}
+
+/* DRIVER PAGE */
+
+.driver-hero{
+
+background:linear-gradient(135deg,#2563eb,#1d4ed8);
+
+color:white;
+
+padding:90px 0;
+
+}
+
+.driver-hero p{
+
+color:#e5e7eb !important;
+
+}
+
+.search-section{
+
+margin-top:-40px;
+
+margin-bottom:60px;
+
+}
+
+.search-card{
+
+background:white;
+
+padding:30px;
+
+border-radius:20px;
+
+box-shadow:0 15px 40px rgba(0,0,0,.1);
+
+}
+
+.category-card{
+
+background:white;
+
+padding:25px;
+
+border-radius:18px;
+
+font-size:20px;
+
+font-weight:600;
+
+box-shadow:0 8px 25px rgba(0,0,0,.08);
+
+transition:.3s;
+
+cursor:pointer;
+
+}
+
+.category-card:hover{
+
+background:#2563eb;
+
+color:white;
+
+transform:translateY(-8px);
+
+}
+
+/* Featured Drivers */
+
+.featured-drivers{
+
+    background:#f8fafc;
+
+}
+
+.driver-card{
+
+    background:#fff;
+
+    border-radius:20px;
+
+    padding:30px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+    transition:.35s;
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.driver-card:hover{
+
+    transform:translateY(-10px);
+
+    box-shadow:0 20px 45px rgba(0,0,0,.15);
+
+}
+
+.driver-img{
+
+    width:120px;
+
+    height:120px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    border:5px solid #2563eb;
+
+}
+
+.verified-badge{
+
+    display:inline-block;
+
+    margin-top:15px;
+
+    background:#10b981;
+
+    color:#fff;
+
+    padding:6px 14px;
+
+    border-radius:20px;
+
+    font-size:14px;
+
+    font-weight:600;
+
+}
+
+.rating{
+
+    color:#f59e0b;
+
+    font-weight:600;
+
+}
+
+.rating span{
+
+    color:#444;
+
+    margin-left:5px;
+
+}
+
+.driver-role{
+
+    color:#2563eb;
+
+    font-weight:600;
+
+}
+
+.driver-info p{
+
+    margin-bottom:10px;
+
+    color:#555;
+
+}
+
+.availability{
+
+    display:inline-block;
+
+    margin-top:10px;
+
+    padding:8px 15px;
+
+    border-radius:20px;
+
+    font-size:14px;
+
+    font-weight:600;
+
+}
+
+.available{
+
+    background:#dcfce7;
+
+    color:#15803d;
+
+}
+
+.busy{
+
+    background:#fef3c7;
+
+    color:#b45309;
+
+}
+/*======================================
+        VEHICLE OWNER HERO
+======================================*/
+
+.owner-hero{
+
+    background:linear-gradient(135deg,#2563EB,#1E3A8A);
+
+    padding:110px 0;
+
+    color:#fff;
+
+    overflow:hidden;
+
+}
+
+.owner-hero-badge{
+
+    display:inline-block;
+
+    background:rgba(255,255,255,.15);
+
+    padding:10px 20px;
+
+    border-radius:50px;
+
+    font-weight:600;
+
+    backdrop-filter:blur(10px);
+
+}
+
+.owner-hero-title{
+
+    font-size:60px;
+
+    font-weight:800;
+
+    line-height:1.2;
+
+}
+
+.owner-hero-title span{
+
+    color:#FDBA74;
+
+}
+
+.owner-hero-description{
+
+    font-size:20px;
+
+    line-height:1.8;
+
+    color:#E5E7EB;
+
+}
+
+.owner-image-card{
+
+    border-radius:25px;
+
+    overflow:hidden;
+
+    box-shadow:0 25px 60px rgba(0,0,0,.30);
+
+}
+
+.owner-image-card img{
+
+    width:100%;
+
+    transition:.4s;
+
+}
+
+.owner-image-card:hover img{
+
+    transform:scale(1.05);
+
+}
+
+.owner-hero-stats{
+
+    display:flex;
+
+    gap:50px;
+
+    margin-top:45px;
+
+    flex-wrap:wrap;
+
+}
+
+.owner-hero-stats h3{
+
+    color:#FDBA74;
+
+    font-weight:800;
+
+    margin-bottom:5px;
+
+}
+
+.owner-hero-stats small{
+
+    color:#E5E7EB;
+
+}
+
+/*==================================
+        OWNER FEATURES
+==================================*/
+
+.owner-features{
+
+    background:#fff;
+
+}
+
+.section-subtitle{
+
+    color:#2563EB;
+
+    font-weight:700;
+
+    letter-spacing:2px;
+
+    font-size:14px;
+
+}
+
+.section-title{
+
+    font-size:42px;
+
+    font-weight:800;
+
+}
+
+.section-text{
+
+    color:#6B7280;
+
+    max-width:650px;
+
+    margin:auto;
+
+}
+
+.feature-card{
+
+    background:#fff;
+
+    padding:35px;
+
+    border-radius:22px;
+
+    box-shadow:0 12px 35px rgba(0,0,0,.08);
+
+    transition:.35s;
+
+    height:100%;
+
+}
+
+.feature-card:hover{
+
+    transform:translateY(-12px);
+
+    box-shadow:0 20px 45px rgba(37,99,235,.20);
+
+}
+
+.feature-icon{
+
+    width:70px;
+
+    height:70px;
+
+    background:#EFF6FF;
+
+    border-radius:18px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:32px;
+
+    color:#2563EB;
+
+    margin-bottom:25px;
+
+}
+
+.feature-card h4{
+
+    font-weight:700;
+
+    margin-bottom:15px;
+
+}
+
+.feature-card p{
+
+    color:#6B7280;
+
+    margin-bottom:20px;
+
+}
+
+.feature-card a{
+
+    text-decoration:none;
+
+    font-weight:600;
+
+}
+
+/*==================================
+        OWNER PROCESS
+==================================*/
+
+.owner-process{
+
+    background:#F8FAFC;
+
+}
+
+.process-card{
+
+    background:#fff;
+
+    padding:35px;
+
+    border-radius:20px;
+
+    position:relative;
+
+    box-shadow:0 12px 30px rgba(0,0,0,.08);
+
+    transition:.35s;
+
+    height:100%;
+
+}
+
+.process-card:hover{
+
+    transform:translateY(-10px);
+
+    box-shadow:0 20px 45px rgba(37,99,235,.18);
+
+}
+
+.process-number{
+
+    position:absolute;
+
+    top:20px;
+
+    right:20px;
+
+    font-size:42px;
+
+    font-weight:800;
+
+    color:#E5E7EB;
+
+}
+
+.process-icon{
+
+    width:70px;
+
+    height:70px;
+
+    background:#2563EB;
+
+    color:#fff;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:18px;
+
+    font-size:30px;
+
+    margin-bottom:25px;
+
+}
+
+.process-card h4{
+
+    font-weight:700;
+
+    margin-bottom:15px;
+
+}
+
+.process-card p{
+
+    color:#6B7280;
+
+}
+
+/*==================================
+      VEHICLE CATEGORY
+==================================*/
+
+.vehicle-category-section{
+
+    background:white;
+
+}
+
+.vehicle-card{
+
+    background:#fff;
+
+    border-radius:22px;
+
+    overflow:hidden;
+
+    box-shadow:0 15px 35px rgba(0,0,0,.08);
+
+    transition:.35s;
+
+    height:100%;
+
+}
+
+.vehicle-card:hover{
+
+    transform:translateY(-10px);
+
+    box-shadow:0 20px 50px rgba(37,99,235,.20);
+
+}
+
+.vehicle-image{
+
+    width:100%;
+
+    height:240px;
+
+    object-fit:cover;
+
+}
+
+.vehicle-content{
+
+    padding:25px;
+
+}
+
+.vehicle-content h4{
+
+    font-weight:700;
+
+}
+
+.vehicle-content p{
+
+    color:#6B7280;
+
+    margin:15px 0;
+
+}
+
+.vehicle-footer{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-top:20px;
+
+}
+
+.vehicle-footer span{
+
+    color:#2563EB;
+
+    font-weight:700;
+
+}
+
+/*==================================
+        TESTIMONIALS
+==================================*/
+
+.owner-testimonials{
+
+    background:#F8FAFC;
+
+}
+
+.testimonial-card{
+
+    background:#fff;
+
+    border-radius:22px;
+
+    padding:35px;
+
+    box-shadow:0 12px 30px rgba(0,0,0,.08);
+
+    transition:.35s;
+
+    height:100%;
+
+}
+
+.testimonial-card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:0 20px 45px rgba(37,99,235,.18);
+
+}
+
+.stars{
+
+    color:#F59E0B;
+
+    font-size:20px;
+
+    margin-bottom:20px;
+
+}
+
+.testimonial-text{
+
+    color:#6B7280;
+
+    line-height:1.8;
+
+    min-height:120px;
+
+}
+
+.testimonial-user{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    margin-top:25px;
+
+}
+
+.testimonial-user img{
+
+    width:60px;
+
+    height:60px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+}
+
+.testimonial-user h5{
+
+    margin:0;
+
+    font-weight:700;
+
+}
+
+.testimonial-user small{
+
+    color:#6B7280;
+
+}
+
+/*==================================
+            FAQ
+==================================*/
+
+.owner-faq{
+
+    background:#ffffff;
+
+}
+
+.accordion-item{
+
+    border:none;
+
+    margin-bottom:15px;
+
+    border-radius:18px !important;
+
+    overflow:hidden;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.06);
+
+}
+
+.accordion-button{
+
+    padding:22px;
+
+    font-weight:600;
+
+    font-size:18px;
+
+}
+
+.accordion-button:not(.collapsed){
+
+    background:#2563EB;
+
+    color:white;
+
+}
+
+.accordion-button:focus{
+
+    box-shadow:none;
+
+}
+
+.accordion-body{
+
+    color:#6B7280;
+
+    line-height:1.8;
+
+}
+
+/* REGISTER PAGE */
+
+.register-section{
+
+padding:80px 0;
+
+background:#f8fafc;
+
+}
+
+.register-card{
+
+background:#fff;
+
+border-radius:25px;
+
+overflow:hidden;
+
+box-shadow:0 20px 50px rgba(0,0,0,.08);
+
+}
+
+.register-left{
+
+background:linear-gradient(135deg,#2563eb,#1d4ed8);
+
+color:white;
+
+padding:60px;
+
+display:flex;
+
+flex-direction:column;
+
+justify-content:center;
+
+}
+
+.register-left h2{
+
+font-weight:700;
+
+font-size:40px;
+
+}
+
+.register-left p{
+
+color:#e5e7eb;
+
+line-height:1.8;
+
+}
+
+.register-form{
+
+padding:60px;
+
+}
+
+.register-form h2{
+
+font-weight:700;
+
+margin-bottom:10px;
+
+}
+
+.register-form input{
+
+width:100%;
+
+padding:14px;
+
+border:1px solid #ddd;
+
+border-radius:12px;
+
+margin-bottom:20px;
+
+}
+
+.register-form select{
+
+width:100%;
+
+padding:14px;
+
+border:1px solid #ddd;
+
+border-radius:12px;
+
+margin-bottom:20px;
+
+}
+
+.register-form label{
+
+font-weight:600;
+
+margin-bottom:8px;
+
+}
+
+.register-form ul{
+
+list-style:none;
+
+padding:0;
+
+}
+
+.register-form .helptext{
+
+display:none;
+
+}
+
+.register-form button{
+
+margin-top:20px;
+
+}
