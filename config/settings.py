@@ -36,7 +36,9 @@ SECRET_KEY = 'django-insecure-f(9x+4rgpbk+un*g3%#=ay3awj6=f1k=%mx#^y#qyp33hq#@g1
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "hyre-driver-d7fl.onrender.com",
+]
 
 
 # Application definition
