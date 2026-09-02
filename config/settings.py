@@ -17,12 +17,18 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = os.environ.get(
+    "SECRET_KEY",
+    "django-insecure-f(9x+4rgpbk+un*g%3#=ay3awj6=f1k=%mx#^y#qyp33hq@#g1"
+)
 
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = [os.environ.get('ALLOWED_HOSTS')]
-
+ALLOWED_HOSTS = [
+    "hyre-driver-d7fl.onrender.com",
+    "localhost",
+    "127.0.0.1",
+]
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -31,14 +37,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-f(9x+4rgpbk+un*g3%#=ay3awj6=f1k=%mx#^y#qyp33hq#@g1'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = [
-    "hyre-driver-d7fl.onrender.com",
-]
 
 
 # Application definition
